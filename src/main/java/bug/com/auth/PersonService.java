@@ -1,3 +1,4 @@
+//zapis nowego użytkownika
 package bug.com.auth;
 
 import org.springframework.beans.factory.annotation.Value;

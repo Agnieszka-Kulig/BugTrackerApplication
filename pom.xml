@@ -46,6 +46,10 @@
             <artifactId>thymeleaf-layout-dialect</artifactId>
             <version>2.0.5</version>
         </dependency>
+        <properties>
+            <maven.compiler.source>12</maven.compiler.source>
+            <maven.compiler.target>12</maven.compiler.target>
+        </properties>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

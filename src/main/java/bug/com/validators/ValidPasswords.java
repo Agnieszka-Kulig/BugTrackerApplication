@@ -7,14 +7,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-
-
-@Target({ElementType.FIELD})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ??)
+@Constraint(validatedBy = ValidPasswordsValidator.class)
+public @interface ValidPasswords {
 
-public @interface UniqueUsername {
-    String message() default "{username.unique.error}";
+    String message() default "{passwords.not.valid.error}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

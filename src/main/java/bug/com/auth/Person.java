@@ -1,10 +1,13 @@
 package bug.com.auth;
 
+import bug.com.validators.UniqueUsername;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -17,6 +20,11 @@ import java.util.Set;
     @GeneratedValue
     Long id;
 
+
+
+    @NotEmpty
+    @UniqueUsername
+    @Size(min = 5, max = 255)
     @Column(nullable = false, unique = true)
     String username;
 
