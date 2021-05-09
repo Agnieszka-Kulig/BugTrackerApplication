@@ -41,7 +41,7 @@ public class PersonController {
 
         ModelAndView modelAndView = new ModelAndView("people/create");
         modelAndView.addObject("authorities", authorities);
-        modelAndView.addObject("person", new Person());
+        modelAndView.addObject ("person", new Person());
 
         return modelAndView;
     }

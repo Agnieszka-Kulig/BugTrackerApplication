@@ -1,20 +1,47 @@
-package bug.com.validators;
-
-import bug.com.auth.Person;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
-public class UsernameUniquenessValidator implements ConstraintValidator<UniqueUsername, String> {
-    @Override
-    public void initialize(UniqueUsername constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-
-    }
-
-    @Override
-    public boolean isValid(Person person, ConstraintValidatorContext ctx) {
-        Person foundPerson = personRepository.find
-        return false;
-    }
-}
+//package bug.com.validators;
+//
+//import bug.com.auth.Person;
+//import bug.com.auth.PersonRepository;
+//
+//import javax.validation.ConstraintValidator;
+//import javax.validation.ConstraintValidatorContext;
+//
+//public class UsernameUniquenessValidator
+//        implements ConstraintValidator<UniqueUsername, Person> {
+//
+//
+//    private final PersonRepository personRepository;
+//
+//
+//    public UsernameUniquenessValidator(PersonRepository personRepository, PersonRepository personRepository1) {
+//        this.personRepository = personRepository1;
+//    }
+//
+//
+//
+//    @Override
+//    public void initialize(UniqueUsername constraintAnnotation) {
+//        ConstraintValidator.super.initialize(constraintAnnotation);
+//
+//    }
+//
+//    @Override
+//    public boolean isValid(Person person, ConstraintValidatorContext ctx) {
+//        Person foundPerson = personRepository.findByUsername(person.getUsername());
+//
+//        if (foundPerson == null) {
+//            return true;
+//        }
+//
+//        boolean usernameIsUnique = person.getId() != null && foundPerson.getId().equals(person.getId());
+//
+//        if (!usernameIsUnique) {
+//            ctx.disableDefaultConstraintViolation();
+//            ctx.buildConstraintViolationWithTemplate(ctx.getDefaultConstraintMessageTemplate())
+//                    .addPropertyNode("username")
+//                    .addConstraintViolation();
+//        }
+//
+//        return usernameIsUnique;
+//    }
+//}

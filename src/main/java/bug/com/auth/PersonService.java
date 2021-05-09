@@ -32,7 +32,7 @@ public class PersonService {
         }
 
         String hashedPassword = bCryptPasswordEncoder.encode(myAdminPassword);
-        Person person = new Person(myAdminUsername, hashedPassword, "Admin Admin");
+        Person person = new Person();
 
         List<Authority> authorities = (List<Authority>) authorityRepository.findAll();
         person.setAuthorities(new HashSet<>(authorities));

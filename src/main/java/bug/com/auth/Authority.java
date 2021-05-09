@@ -13,6 +13,7 @@ public class Authority {
     @Id
     @GeneratedValue
     Long id;
+
     @Column(nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     AuthorityName name;

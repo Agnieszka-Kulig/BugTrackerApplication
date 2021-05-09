@@ -1,5 +1,5 @@
 //formatka z funkcjonalnością, lista sortująca statusy zadań
-package bug.com.issues;
+//package bug.com.issues;
 
 
 import bug.com.auth.Person;
@@ -12,34 +12,34 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-@Entity
-@EntityListeners(AuditingEntityListener.class)
-@Getter
-@Setter
-@NoArgsConstructor
-public class Issue {
-
-    @Id
-    @GeneratedValue
-    Long id;
-
-    @Column(nullable = false)
-    String title;
-
-    @Column(columnDefinition = "TEXT")
-    String content;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    State state = State.TODO;
-
-    @ManyToOne()
-    @JoinColumn(name = "assignee_id")
-    Person assignee;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-    Project project;
-
-
-}
+//@Entity
+//@EntityListeners(AuditingEntityListener.class)
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//public class Issue {
+//
+//    @Id
+//    @GeneratedValue
+//    Long id;
+//
+//    @Column(nullable = false)
+//    String title;
+//
+//    @Column(columnDefinition = "TEXT")
+//    String content;
+//
+//    @Column(nullable = false)
+//    @Enumerated(EnumType.STRING)
+//    State state = State.TODO;
+//
+//    @ManyToOne()
+//    @JoinColumn(name = "assignee_id")
+//    Person assignee;
+//
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "project_id", nullable = false)
+//    Project project;
+//
+//
+//}
