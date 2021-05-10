@@ -6,10 +6,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled = true)
-public class AuthDemoApplication {
+public class ProjectApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AuthDemoApplication.class, args); }
+        SpringApplication.run(ProjectApplication.class, args); }
 
     }
 

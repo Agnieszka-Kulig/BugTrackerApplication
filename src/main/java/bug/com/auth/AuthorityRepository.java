@@ -1,5 +1,6 @@
 package bug.com.auth;
 
+import bug.com.enums.AuthorityName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,6 +1,7 @@
 package bug.com.auth;
 
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,10 +11,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
+@NoArgsConstructor
 @Entity
-//@NoArgsConstructor
+
 @Getter
 @Setter
+
 //@ValidPasswords//walidacja hasła
 //@UniqueUsername
 public class Person {
@@ -23,7 +26,7 @@ public class Person {
  Long id;
 
  @NotEmpty
- @Size(min = 5, max = 255)
+ @Size(min = 5, max = 255)//hasło
  @Column(nullable = false, unique = true)
  String username;
 
@@ -31,7 +34,7 @@ public class Person {
  String password;
 
  @Transient
- String repeatedPassword;
+ String repeatedPassword;     //powtorzenie hasla
 
  @NotEmpty
  @Size(min = 5, max = 255)
@@ -41,6 +44,11 @@ public class Person {
  @Column(nullable = false)
  @ColumnDefault(value = "true")
  Boolean enabled = true;
+
+
+ @Column(nullable = true)
+
+
 
  @ManyToMany(cascade = CascadeType.MERGE)
  @JoinTable(name = "person_authorities",

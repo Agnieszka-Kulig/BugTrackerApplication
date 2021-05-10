@@ -2,9 +2,9 @@
 package bug.com;
 
 import bug.com.auth.Authority;
-import bug.com.auth.AuthorityName;
 import bug.com.auth.AuthorityRepository;
 import bug.com.auth.PersonService;
+import bug.com.enums.AuthorityName;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
@@ -23,22 +23,17 @@ public class Bootstrap implements InitializingBean {
     public void afterPropertiesSet() {
         prepareAuthorities();
 
-        personService.prepareAdmin();
+        personService.prepareAdminUser();
     }
 
     private void prepareAuthorities() {
-        for (AuthorityName authorityName : AuthorityName.values()) {
-            Authority existingAuthority = authorityRepository.findByName(authorityName);
+        for (AuthorityName name : AuthorityName.values()) {
+            Authority existingAuthority = authorityRepository.findByName(name);
 
-            if (existingAuthority != null) {
-                System.out.println("Uprawnienie " + authorityName.name() + " już istnieje.");
-                continue;
+            if (existingAuthority == null) {
+                Authority authority = new Authority(name);
+                authorityRepository.save(authority);
             }
-
-            System.out.println("Zapisujemy nowe uprawnienie " + authorityName.name() + "...");
-
-            Authority newAuthority = new Authority(authorityName);
-            authorityRepository.save(newAuthority);
         }
     }
 }

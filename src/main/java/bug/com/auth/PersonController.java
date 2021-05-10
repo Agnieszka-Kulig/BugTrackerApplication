@@ -30,7 +30,7 @@ public class PersonController {
     @Secured("ROLE_USERS_TAB")
     ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("people/index");
-//        modelAndView.addObject("people", personService.findAllUsers());
+        modelAndView.addObject("people", personService.findAllUsers());
         return modelAndView;
     }
 
@@ -76,6 +76,7 @@ public class PersonController {
 
         return modelAndView;
     }
+    //dorobic usuwanie
 //        @GetMapping("/delete/{id}")
 //        @Secured("ROLE_CREATE_USER")
 //        ModelAndView deleteUser(@ModelAttribute @PathVariable("id") Long id, RedirectAttributes attributes) {

@@ -26,20 +26,29 @@ public class PersonService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public void prepareAdmin() {
+    public void prepareAdminUser() {
         if (personRepository.findByUsername(myAdminUsername) != null) {
+            System.out.println("Użytkownik " + myAdminUsername + " już istnieje. Przerywamy tworzenie.");
             return;
         }
 
-        String hashedPassword = bCryptPasswordEncoder.encode(myAdminPassword);
-        Person person = new Person();
+        Person person = new Person(myAdminPassword, myAdminPassword, "Administrator");
+
 
         List<Authority> authorities = (List<Authority>) authorityRepository.findAll();
         person.setAuthorities(new HashSet<>(authorities));
 
-        personRepository.save(person);
+        savePerson(person);
     }
 
-    public void savePerson(Person person) {
+
+        protected void savePerson(Person person) {
+            String hashedPassword = bCryptPasswordEncoder.encode(person.password);
+            person.setPassword(hashedPassword);
+            personRepository.save(person);
+        }
+
+        List<Person> findAllUsers() {
+            return personRepository.findAll();
+        }
     }
-}
