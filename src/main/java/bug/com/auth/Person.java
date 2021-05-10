@@ -2,20 +2,19 @@ package bug.com.auth;
 
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
-@NoArgsConstructor
-@Entity
 
+@Entity
 @Getter
 @Setter
+@NoArgsConstructor
+
 
 //@ValidPasswords//walidacja hasła
 //@UniqueUsername
@@ -56,7 +55,7 @@ public class Person {
          inverseJoinColumns = @JoinColumn(name = "authority_id"))
  Set<Authority> authorities;
 
- public Person() {
+ public Person(String username, String password, String name) {
   this.username = username;
   this.password = password;
   this.name = name;
