@@ -7,6 +7,8 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -55,10 +57,27 @@ public class Person {
          inverseJoinColumns = @JoinColumn(name = "authority_id"))
  Set<Authority> authorities;
 
- public Person(String username, String password, String name) {
-  this.username = username;
-  this.password = password;
-  this.name = name;
 
+
+    public Person(String username, String password, String name) {
+     this.username = username;
+     this.password = password;
+     this.name = name;
+
+    }
+ public void setPassword(String password) {
+  this.password = password;
+ }
+
+ public void setAuthorities(Set<Authority> authorities) {
+  this.authorities=authorities;
+ }
+
+ public String getUsername() {
+  return username;
+ }
+
+ public void setUsername(String username) {
+  this.username = username;
  }
 }

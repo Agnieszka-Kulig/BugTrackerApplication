@@ -4,6 +4,8 @@ package bug.com.auth;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class PersonService {
             String hashedPassword = bCryptPasswordEncoder.encode(person.password);
             person.setPassword(hashedPassword);
             personRepository.save(person);
+
         }
 
         List<Person> findAllUsers() {

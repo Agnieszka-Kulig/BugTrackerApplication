@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -38,10 +38,9 @@ public class PersonController {
     @Secured("ROLE_CREATE_USER")
     ModelAndView create() {
         List<Authority> authorities = authorityRepository.findAll();
-
         ModelAndView modelAndView = new ModelAndView("people/create");
         modelAndView.addObject("authorities", authorities);
-        modelAndView.addObject ("person", new Person());
+        modelAndView.addObject("person", new Person()); //poprawka personRepository
 
         return modelAndView;
     }
@@ -79,13 +78,14 @@ public class PersonController {
     //dorobic usuwanie
 //        @GetMapping("/delete/{id}")
 //        @Secured("ROLE_CREATE_USER")
-//        ModelAndView deleteUser(@ModelAttribute @PathVariable("id") Long id, RedirectAttributes attributes) {
+//
 //            ModelAndView modelAndView = new ModelAndView();
-////            personService.deletePerson(id);
-//            attributes.addAttribute("delete", "success");
-//            modelAndView.setViewName("redirect:/users");
+////
+//            modelAndView.setViewName("redirect:/people");
 //
 //            return modelAndView;
 //    }
 //}
 }
+
+

@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Long> {//sprawdzić czy to nie Crud Repository
+public interface PersonRepository extends JpaRepository<Person, Long> {
 
     Person findByUsername(String username);
 }
