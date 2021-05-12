@@ -2,11 +2,10 @@ package bug.com.issues;
 
 import bug.com.auth.Person;
 import bug.com.enums.State;
-import bug.com.projects.Project;
+import bug.com.project.Project;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 @Getter

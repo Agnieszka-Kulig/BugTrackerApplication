@@ -3,7 +3,7 @@ package bug.com.issues;
 
 import bug.com.auth.PersonRepository;
 import bug.com.enums.State;
-import bug.com.projects.ProjectRepository;
+import bug.com.project.ProjectRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;

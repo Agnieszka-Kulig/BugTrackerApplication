@@ -4,7 +4,7 @@ package bug.com.issues;//formatka z funkcjonalnością, lista sortująca statusy
 
 import bug.com.auth.Person;
 import bug.com.enums.State;
-import bug.com.projects.Project;
+import bug.com.project.Project;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
