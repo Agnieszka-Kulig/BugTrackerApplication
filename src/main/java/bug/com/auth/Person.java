@@ -2,13 +2,13 @@ package bug.com.auth;
 
 
 
+import bug.com.validators.UniqueUsername;
+import bug.com.validators.ValidPasswords;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -18,8 +18,8 @@ import java.util.Set;
 @NoArgsConstructor
 
 
-//@ValidPasswords//walidacja hasła
-//@UniqueUsername
+@ValidPasswords//walidacja hasła
+@UniqueUsername
 public class Person {
 
  @Id
@@ -46,10 +46,9 @@ public class Person {
  @ColumnDefault(value = "true")
  Boolean enabled = true;
 
-
- @Column(nullable = true)
-
-
+ @NotEmpty
+ @Column(nullable=true)
+ String email;
 
  @ManyToMany(cascade = CascadeType.MERGE)
  @JoinTable(name = "person_authorities",
@@ -65,6 +64,15 @@ public class Person {
      this.name = name;
 
     }
+
+ public Person(String username, String password, String name, String email) {
+  this.username = username;
+  this.password = password;
+  this.name = name;
+  this.email=email;
+
+ }
+
  public void setPassword(String password) {
   this.password = password;
  }
@@ -74,12 +82,10 @@ public class Person {
  }
 
  public String getUsername() {
-
      return username;
  }
 
  public void setUsername(String username) {
-
      this.username = username;
  }
 }
