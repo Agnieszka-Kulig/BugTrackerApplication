@@ -4,8 +4,6 @@ package bug.com.auth;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class PersonService {
             System.out.println("Użytkownik " + myAdminUsername + " już istnieje. Przerywamy tworzenie.");
             return;
         }
-
+        System.out.println("Tworzymy administratora: " + myAdminUsername + "...");
         Person person = new Person(myAdminPassword, myAdminPassword, "Administrator");
 
 
@@ -52,6 +50,7 @@ public class PersonService {
         }
 
         List<Person> findAllUsers() {
-            return personRepository.findAll();
+
+        return personRepository.findAll();
         }
     }

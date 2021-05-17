@@ -41,9 +41,10 @@
         </thead>
         <tr th:each="person : ${people}">
             <td>
-                <a th:href=""0
+                <a th:href="@{'/people/edit/' + ${person.id}}"
+                   th:text="${person.id}"
+                   class="btn btn-secondary"></a>
             </td>
-            <td>th:text="${person.id}"></td>
             <td> {person.username}"></td>
             <td> {person.name}"></td>
         </tr>
@@ -55,7 +56,8 @@
            class="btn btn-primary"></a>
     </div>
     </div>
-    <div th:replace="fragments/footer :: footer">&copy; Bug tracker aplikacja </div>
+    <div th:replace="fragments/footer :: footer">
+        &copy; 2021 Bug tracker aplikacja </div>
     </div>
 </section>
 </body>

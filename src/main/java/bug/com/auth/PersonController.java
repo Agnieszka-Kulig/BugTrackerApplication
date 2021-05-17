@@ -75,17 +75,17 @@ public class PersonController {
 
         return modelAndView;
     }
-    //dorobic usuwanie
-//        @GetMapping("/delete/{id}")
-//        @Secured("ROLE_CREATE_USER")
-//
-//            ModelAndView modelAndView = new ModelAndView();
-////
-//            modelAndView.setViewName("redirect:/people");
-//
-//            return modelAndView;
-//    }
-//}
 }
+//  dorobic usuwanie
+//       @GetMapping("/delete/{id}")
+//       @Secured("ROLE_CREATE_USER")
+//       ModelAndView modelAndView = new ModelAndView();
+
+//        modelAndView.setViewName("redirect:/people");
+
+//          return modelAndView;
+//   }
+//}
+
 
 

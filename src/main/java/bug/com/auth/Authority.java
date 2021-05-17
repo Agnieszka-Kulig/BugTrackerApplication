@@ -15,11 +15,10 @@ public class Authority {
     Long id;
 
     @Column(nullable = false, unique = true)
-    @Enumerated
+    @Enumerated (EnumType.STRING)
     public AuthorityName name;
 
     public Authority(AuthorityName name) {
-
-        this.name = name;
+            this.name = name;
     }
 }

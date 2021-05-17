@@ -13,10 +13,9 @@ public class UsernameUniquenessValidator
     private final PersonRepository personRepository;
 
 
-    public UsernameUniquenessValidator(PersonRepository personRepository, PersonRepository personRepository1) {
-        this.personRepository = personRepository1;
+    public UsernameUniquenessValidator(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
-
 
 
     @Override

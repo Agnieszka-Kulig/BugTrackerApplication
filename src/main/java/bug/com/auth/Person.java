@@ -1,7 +1,4 @@
 package bug.com.auth;
-
-
-
 import bug.com.validators.UniqueUsername;
 import bug.com.validators.ValidPasswords;
 import lombok.*;
@@ -11,13 +8,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
-
 @Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-
-
 @ValidPasswords//walidacja hasła
 @UniqueUsername
 public class Person {
@@ -74,14 +68,14 @@ public class Person {
  }
 
  public void setPassword(String password) {
-  this.password = password;
+        this.password = password;
  }
 
  public void setAuthorities(Set<Authority> authorities) {
-  this.authorities=authorities;
+        this.authorities=authorities;
  }
 
- public String getUsername() {
+ public String getUsername(String username) {
      return username;
  }
 

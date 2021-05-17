@@ -21,6 +21,8 @@ public class Bootstrap implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
+        System.out.println("Rozpoczynamy przygotowywanie aplikacji...");
+
         prepareAuthorities();
 
         personService.prepareAdminUser();
