@@ -41,7 +41,7 @@ public class Person {
  Boolean enabled = true;
 
  @NotEmpty
- @Column(nullable=true)
+ @Column(nullable = true)
  String email;
 
  @ManyToMany(cascade = CascadeType.MERGE)
@@ -51,35 +51,38 @@ public class Person {
  Set<Authority> authorities;
 
 
+ public Person(String username, String password, String name) {
+  this.username = username;
+  this.password = password;
+  this.name = name;
 
-    public Person(String username, String password, String name) {
-     this.username = username;
-     this.password = password;
-     this.name = name;
-
-    }
+ }
 
  public Person(String username, String password, String name, String email) {
   this.username = username;
   this.password = password;
   this.name = name;
-  this.email=email;
+  this.email = email;
 
  }
 
  public void setPassword(String password) {
-        this.password = password;
+  this.password = password;
  }
 
  public void setAuthorities(Set<Authority> authorities) {
-        this.authorities=authorities;
+  this.authorities = authorities;
  }
 
  public String getUsername(String username) {
-     return username;
+
+  return username;
  }
 
  public void setUsername(String username) {
-     this.username = username;
+
+  this.username = username;
  }
+
 }
+

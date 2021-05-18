@@ -19,6 +19,7 @@ public class Authority {
     public AuthorityName name;
 
     public Authority(AuthorityName name) {
-            this.name = name;
+
+        this.name = name;
     }
 }

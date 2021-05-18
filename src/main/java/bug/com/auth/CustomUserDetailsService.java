@@ -20,6 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final PersonRepository personRepository;
 
     public CustomUserDetailsService(PersonRepository personRepository) {
+
         this.personRepository = personRepository;
     }
 
