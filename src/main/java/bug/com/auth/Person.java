@@ -29,7 +29,7 @@ public class Person {
  String password;
 
  @Transient
- String repeatedPassword;     //powtorzenie hasla
+ String repeatedPassword;
 
  @NotEmpty
  @Size(min = 5, max = 255)
@@ -67,10 +67,12 @@ public class Person {
  }
 
  public void setPassword(String password) {
+
   this.password = password;
  }
 
  public void setAuthorities(Set<Authority> authorities) {
+
   this.authorities = authorities;
  }
 

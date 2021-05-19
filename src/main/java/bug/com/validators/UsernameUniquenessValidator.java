@@ -12,11 +12,9 @@ public class UsernameUniquenessValidator
 
     private final PersonRepository personRepository;
 
-
     public UsernameUniquenessValidator(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
-
 
     @Override
     public void initialize(UniqueUsername constraintAnnotation) {
