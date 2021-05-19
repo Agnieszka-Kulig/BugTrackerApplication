@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 </head>
 <body>
 <section class="container">
-    <img src="logo.jpg" alt="Logo strony" />
+    <img src="logo.jpg">
     </div>
 
     <h1>
@@ -45,8 +45,8 @@
                    th:text="${person.id}"
                    class="btn btn-secondary"></a>
             </td>
-            <td> {person.username}"></td>
-            <td> {person.name}"></td>
+            <td th:text="${person.username}"></td>
+            <td th:text="${person.name}"></td>
         </tr>
     </table>
 

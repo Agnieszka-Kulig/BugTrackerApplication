@@ -18,17 +18,17 @@
 </head>
 <body>
 <section class="container">
-<!--    <div th:insert="fragments/header :: header">...</div>-->
-    <section class="container">
+        Bug Tracker application
 
-        Bug Tracker
+<!--    <hr/>-->
 
-        <hr/>
+    <a th:href="@{/people/}" class="btn btn-default mb-2" th:text="Użytkownicy"></a>
 
-        <form th:action="@{/logout}" method="post" class="form-inline">
-            <input type="submit" th:value="#{login.logout}" class="btn btn-secondary"/>
-        </form>
-    </section>
-    <div th:insert="fragments/footer :: ${isAdmin} ? 'footer-admin' : 'footer'"></div>
+<!--    <hr/>-->
+
+    <form th:action="@{/logout}" method="post" class="form-inline">
+        <input type="submit" th:value="#{login.logout}" class="btn btn-secondary"/>
+    </form>
+</section>
 </body>
 </html>
