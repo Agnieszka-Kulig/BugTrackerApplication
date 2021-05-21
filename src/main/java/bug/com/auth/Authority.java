@@ -1,6 +1,7 @@
 package bug.com.auth;
 
 import bug.com.enums.AuthorityName;
+import bug.com.validators.UniqueUsername;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import javax.persistence.*;

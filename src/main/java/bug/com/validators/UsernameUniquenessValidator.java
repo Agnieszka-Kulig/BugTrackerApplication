@@ -13,6 +13,7 @@ public class UsernameUniquenessValidator
     private final PersonRepository personRepository;
 
     public UsernameUniquenessValidator(PersonRepository personRepository) {
+
         this.personRepository = personRepository;
     }
 

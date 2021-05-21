@@ -18,15 +18,15 @@ public class Person {
 
  @Id
  @GeneratedValue
- Long id;
+ private Long id;
 
  @NotEmpty
  @Size(min = 5, max = 255)//hasło
  @Column(nullable = false, unique = true)
- String username;
+ private String username;
 
  @Column(nullable = false)
- String password;
+ private String password;
 
  @Transient
  String repeatedPassword;
@@ -55,36 +55,6 @@ public class Person {
   this.username = username;
   this.password = password;
   this.name = name;
-
  }
-
- public Person(String username, String password, String name, String email) {
-  this.username = username;
-  this.password = password;
-  this.name = name;
-  this.email = email;
-
- }
-
- public void setPassword(String password) {
-
-  this.password = password;
- }
-
- public void setAuthorities(Set<Authority> authorities) {
-
-  this.authorities = authorities;
- }
-
- public String getUsername(String username) {
-
-  return username;
- }
-
- public void setUsername(String username) {
-
-  this.username = username;
- }
-
 }
 

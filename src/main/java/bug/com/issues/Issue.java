@@ -1,5 +1,5 @@
 package bug.com.issues;//formatka z funkcjonalnością, lista sortująca statusy zadań
-//package bug.com.issues;
+
 
 
 import bug.com.auth.Person;

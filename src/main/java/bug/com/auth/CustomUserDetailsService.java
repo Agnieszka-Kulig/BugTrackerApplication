@@ -28,7 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Person person = personRepository.findByUsername(username);
-
         System.out.println("Znaleziony użytkownik: " + person);
 
         if (person == null) {
@@ -40,7 +39,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private UserDetails buildUserDetails(Person person) {
         List<GrantedAuthority> authorities = getUserAuthorities(person);
-        return new User(person.username, person.password, authorities);
+        return new User(person.getUsername(), person.getPassword(), authorities);
     }
 
     private List<GrantedAuthority> getUserAuthorities(Person person) {

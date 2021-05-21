@@ -32,7 +32,7 @@ public class PersonService {
             return;
         }
         System.out.println("Tworzymy administratora: " + myAdminUsername + "...");
-        Person person = new Person(myAdminPassword, myAdminPassword, "Administrator");
+        Person person = new Person(myAdminUsername, myAdminPassword, "Administrator");
 
 
         List<Authority> authorities = (List<Authority>) authorityRepository.findAll();
@@ -43,14 +43,13 @@ public class PersonService {
 
 
         protected void savePerson(Person person) {
-            String hashedPassword = bCryptPasswordEncoder.encode(person.password);
+            String hashedPassword = bCryptPasswordEncoder.encode(person.getPassword());
             person.setPassword(hashedPassword);
             personRepository.save(person);
 
         }
 
         List<Person> findAllUsers() {
-
         return personRepository.findAll();
         }
     }
