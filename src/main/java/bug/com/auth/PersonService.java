@@ -50,6 +50,7 @@ public class PersonService {
         }
 
         List<Person> findAllUsers() {
+
         return personRepository.findAll();
         }
     }

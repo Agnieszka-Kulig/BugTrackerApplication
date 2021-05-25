@@ -29,7 +29,7 @@ public class Person {
  private String password;
 
  @Transient
- String repeatedPassword;
+ String repeatedPassword;//brak
 
  @NotEmpty
  @Size(min = 5, max = 255)

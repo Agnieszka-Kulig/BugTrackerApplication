@@ -25,7 +25,7 @@ public class Issue {
     Long id;
 
     @Column(nullable = false)
-    String title;
+    String tittle;
 
     @Column(columnDefinition = "TEXT")
     String content;
