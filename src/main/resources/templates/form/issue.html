@@ -51,9 +51,9 @@
                     th:text="${#messages.msg('state.' + state)}"></option>
         </select>
 
-        <input th:field="*{title}"
+        <input th:field="*{tittle}"
                class="form-control"
-               th:placeholder="#{title.placeholder}"/>
+               th:placeholder="#{tittle.placeholder}"/>
 
         <input th:field="*{globalSearch}"
                class="form-control"
@@ -68,7 +68,7 @@
         <span th:text="${issue.id}"></span> |
         <span th:text="${issue.project.name}"></span> |
         <span th:text="${issue.state}"></span> |
-        <span th:text="${issue.title}"></span> |
+        <span th:text="${issue.tittle}"></span> |
         <span th:text="${issue.content}"></span> |
         <span th:if="${issue.assignee != null}" th:text="${issue.assignee.name}"></span>
     </div>

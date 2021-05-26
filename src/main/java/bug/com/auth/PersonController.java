@@ -40,7 +40,7 @@ public class PersonController {
         List<Authority> authorities = authorityRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("people/create");
         modelAndView.addObject("authorities", authorityRepository.findAll());
-        modelAndView.addObject("person", new Person()); //poprawka personRepository
+        modelAndView.addObject("person", new Person());
 
         return modelAndView;
     }

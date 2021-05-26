@@ -20,7 +20,7 @@ import javax.persistence.*;
 public class Issue {
 
 
-@Id
+   @Id
     @GeneratedValue
     Long id;
 

@@ -1,9 +1,8 @@
 package bug.com.project;
-
-
 import bug.com.enums.Status;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,6 +16,7 @@ import javax.validation.constraints.Size;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Getter
+@Setter
 @NoArgsConstructor
 public class Project {
 
@@ -24,7 +24,9 @@ public class Project {
     @GeneratedValue
     Long id;
 
-    @Column(nullable = false, unique = true)
+    @NotEmpty
+    @Size(min = 5, max = 255)
+    @Column(nullable = false)
     String name;
 
     @Column(nullable = false)
