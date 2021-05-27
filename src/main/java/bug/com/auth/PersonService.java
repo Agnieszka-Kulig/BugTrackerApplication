@@ -41,6 +41,18 @@ public class PersonService {
         savePerson(person);
     }
 
+    public void createNewPerson(String userRealName, String username, String meil){
+        Person person = new Person();
+        person.setName(userRealName);
+        person.setUsername(username);
+        person.setEmail(meil);
+        personRepository.save(person);
+
+    }
+    public void deletePerson(String username) {
+        Person byUsername = personRepository.findByUsername(username);
+        personRepository.delete(byUsername);
+    }
 
         protected void savePerson(Person person) {
             String hashedPassword = bCryptPasswordEncoder.encode(person.getPassword());
