@@ -47,13 +47,10 @@ public class Issue {
     @JoinColumn(name = "project_id", nullable = false)
     Project project;
 
-    @Column
-    @CreationTimestamp
-    Date dateCreated;
+    @ManyToOne
+    @JoinColumn(name ="issue_id")
+    Issue issue;
 
-    @Column
-    @UpdateTimestamp
-    Date lastUpdate;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -75,6 +72,13 @@ public class Issue {
     @JoinColumn(name = "creator_id")
     Person creator;
 
+    @Column
+    @CreationTimestamp
+    Date dateCreated;
+
+    @Column
+    @UpdateTimestamp
+    Date lastUpdate;
 
     @Column
     @OneToMany(mappedBy = "issue")

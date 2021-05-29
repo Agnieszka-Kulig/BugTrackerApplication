@@ -12,6 +12,7 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
 
     public List<Project> getAllProjects(){
-    return projectRepository.findAll();
+
+        return projectRepository.findAll();
    }
  }
