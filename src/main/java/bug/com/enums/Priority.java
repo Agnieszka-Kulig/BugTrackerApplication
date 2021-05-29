@@ -1,5 +1,5 @@
 package bug.com.enums;
 
 public enum Priority {
-   HIGH, MEDIUM, LOW;
+   HIGH, NORMAL, MAJOR, MINOR, TRIVIAL;
 }

@@ -1,6 +1,5 @@
 package bug.com.project;
 
-import bug.com.auth.Person;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

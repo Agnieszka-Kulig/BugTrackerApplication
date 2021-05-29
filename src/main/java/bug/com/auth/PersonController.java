@@ -1,6 +1,5 @@
-//do npoprawki
-package bug.com.auth;
 
+package bug.com.auth;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;

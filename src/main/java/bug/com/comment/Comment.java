@@ -1,3 +1,5 @@
+//dodatkowe
+
 package bug.com.comment;
 
 import bug.com.issues.Issue;
@@ -27,6 +29,9 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name ="issue_id")
     Issue issue;
+
+    @Column(columnDefinition = "TEXT")
+    String content;
 
     @PrePersist
     public void setDateCreated(){this.dateCreated = new Date();}

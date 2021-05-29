@@ -6,7 +6,6 @@ import bug.com.auth.Person;
 import bug.com.comment.Comment;
 import bug.com.enums.*;
 import bug.com.project.Project;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +14,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -66,29 +64,24 @@ public class Issue {
     Priority priority;
 
 
-   @Column
-   @Enumerated(EnumType.STRING)
-   Type type;
+    @Column
+    @Enumerated(EnumType.STRING)
+    Type type;
 
-   @Column
-   @Enumerated(EnumType.STRING)
-   @ElementCollection
-   List<Tag> tag;
+    @Column
+    String code;
 
-   @Column
-   String code;
-
-   @ManyToOne()
-   @JoinColumn(name = "creator_id")
-   Person creator;
+    @ManyToOne()
+    @JoinColumn(name = "creator_id")
+    Person creator;
 
 
-   @Column
-   @OneToMany(mappedBy = "issue")
-   List<Comment> comments;
+    @Column
+    @OneToMany(mappedBy = "issue")
+    List<Comment> comments;
 
-   @PrePersist
-   public void setDateCreated(){this.dateCreated = new Date();}
+    @PrePersist
+    public void setDateCreated(){this.dateCreated = new Date();}
 
 
     @PreUpdate

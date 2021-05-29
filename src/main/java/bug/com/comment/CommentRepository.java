@@ -1,3 +1,5 @@
+//dodatkowe
+
 package bug.com.comment;
 
 

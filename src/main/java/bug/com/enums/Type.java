@@ -1,5 +1,5 @@
 package bug.com.enums;
 
 public enum Type {
-    TASK, BUG, ANALIZE;
+    TASK, BUG, DOCUMENTATION;
 }

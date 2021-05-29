@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -29,6 +31,9 @@ public class Project {
     @Column(nullable = false)
     String name;
 
+    @Column
+    String code;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     Status status = Status.NORMAL;
@@ -42,4 +47,8 @@ public class Project {
     @Column(nullable = false)
     @ColumnDefault(value = "true")
     Boolean enabled = true;
+
+    @Column
+    @CreationTimestamp
+    Date dateCreated;
 }
