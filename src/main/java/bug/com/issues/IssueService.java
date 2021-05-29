@@ -5,6 +5,7 @@ import bug.com.enums.State;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -24,16 +25,18 @@ public class IssueService {
         issue.setContent(content);
         issue.setState(state);
         issue.setCode(code);
-        IssueRepository.save(issue);
-    }
-
-    public void deleteIssue(Long id) {
-        Issue issue = issueRepository.findById(id);
         issueRepository.save(issue);
     }
 
+    public void deleteIssue(Long id) {
+        Optional<Issue> issue = issueRepository.findById(id);
+        if(issue.isPresent()){
+            issueRepository.delete(issue.get());
+        }
+    }
+
     protected Issue editIssue (Long id) {
-        return issueRepository.findById(id);
+        return issueRepository.findById(id).orElse(null);
     }
 
     List<Issue> findAllIssue() {

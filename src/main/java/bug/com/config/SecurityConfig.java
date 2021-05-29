@@ -40,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-//        web.ignoring().antMatchers("/css/**");
-        web.ignoring().antMatchers("/**");
+        web.ignoring().antMatchers("/css/**");
+//        web.ignoring().antMatchers("/**");
     }
 
     @Override
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contact").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/contact").permitAll()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/contact",true).permitAll()
                 .and()
 
                 .logout().permitAll();

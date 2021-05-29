@@ -1,6 +1,6 @@
 package bug.com.project;
 
-import bug.com.auth.Person;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

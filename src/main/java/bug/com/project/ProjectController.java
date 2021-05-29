@@ -1,5 +1,6 @@
 package bug.com.project;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -9,19 +10,16 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
+@AllArgsConstructor
 public class ProjectController {
-    final ProjectRepository projectRepository;
+   private ProjectService projectService;
 
-    public ProjectController(ProjectRepository projectRepository) {
-
-        this.projectRepository = projectRepository;
-    }
 
     @GetMapping("/")
-    @Secured("ROLE_PROJECT_TAB")
+//    @Secured("ROLE_PROJECT_TAB")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("projects/index");
-        modelAndView.addObject("projects", projectRepository.findAll());
+        modelAndView.addObject("projects", projectService.getAllProjects());
 
         return modelAndView;
     }
@@ -44,23 +42,23 @@ public class ProjectController {
             return modelAndView;
         }
 
-        projectRepository.save(project);
+//        projectRepository.save(project);
         modelAndView.setViewName("redirect:/projects");
 
         return modelAndView;
     }
-
-    @GetMapping("/edit/{id}")
-    @Secured("ROLE_EDIT_PROJECT")
-    ModelAndView edit(@PathVariable Long id) {
-        Project project = projectRepository.findById(id).orElse(null);
-        if (project == null) {
-            return index();
-        }
-        ModelAndView modelAndView = new ModelAndView("project/create");
-        modelAndView.addObject("project", project);
-        return modelAndView;
-    }
+//
+//    @GetMapping("/edit/{id}")
+//    @Secured("ROLE_EDIT_PROJECT")
+//    ModelAndView edit(@PathVariable Long id) {
+//        Project project = projectRepository.findById(id).orElse(null);
+//        if (project == null) {
+//            return index();
+//        }
+//        ModelAndView modelAndView = new ModelAndView("project/create");
+//        modelAndView.addObject("project", project);
+//        return modelAndView;
+//    }
 }
 
 
