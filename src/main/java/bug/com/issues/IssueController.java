@@ -4,10 +4,10 @@ package bug.com.issues;
 import bug.com.auth.PersonRepository;
 import bug.com.enums.State;
 import bug.com.project.ProjectRepository;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,5 +37,5 @@ public class IssueController {
 
         return modelAndView;
     }
-    }
+}
 

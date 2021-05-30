@@ -41,18 +41,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/css/**");
-//        web.ignoring().antMatchers("/**");
+//        web.ignoring().antMatchers("/resources/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/contact").permitAll()
+                .antMatchers("/contact").permitAll()//przekierowanie
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/contact",true).permitAll()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/",true).permitAll()
                 .and()
-
                 .logout().permitAll();
     }
 

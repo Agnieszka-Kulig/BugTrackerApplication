@@ -15,17 +15,24 @@ public class IssueService {
 
 
     public IssueService(IssueRepository issueRepository) {
+
         this.issueRepository = issueRepository;
     }
 
-    public void createNewIssue(String tittle, String content, State state,
-                               String code) {
-        Issue issue = new Issue();
-        issue.setTittle(tittle);
-        issue.setContent(content);
-        issue.setState(state);
-        issue.setCode(code);
-        issueRepository.save(issue);
+    public void createNewIssue(String tittle, String content, State state, String assigne, String project,
+                               String issue, String status, String priority, String type, String code) {
+//        Issue issue = new Issue();
+//        issue.setTittle(tittle);
+//        issue.setContent(content);
+//        issue.setState(state);
+//        issue.setAssignee(assigne);
+//        issue.setProject(project);
+//        issue.setIssue(issue);
+//        issue.setStatus(status);
+//        issue.setPriority(priority);
+//        issue.setType(type);
+//        issue.setCode(code);
+//        issueRepository.save(issue);
     }
 
     public void deleteIssue(Long id) {
@@ -35,7 +42,12 @@ public class IssueService {
         }
     }
 
+//    protected void saveIssue(Issue issue) {
+//        issueRepository.save(issue);//dopisanie save
+
+
     protected Issue editIssue (Long id) {
+
         return issueRepository.findById(id).orElse(null);
     }
 

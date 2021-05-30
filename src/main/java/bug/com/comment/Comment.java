@@ -34,6 +34,7 @@ public class Comment {
     String content;
 
     @PrePersist
-    public void setDateCreated(){this.dateCreated = new Date();}
+    public void setDateCreated(){
+    this.dateCreated = new Date();}
 
 }

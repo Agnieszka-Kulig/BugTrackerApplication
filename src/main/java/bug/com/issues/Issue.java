@@ -85,11 +85,15 @@ public class Issue {
     List<Comment> comments;
 
     @PrePersist
-    public void setDateCreated(){this.dateCreated = new Date();}
+    public void setDateCreated(){
+        this.dateCreated = new Date();
+    }
 
 
     @PreUpdate
-    public void setLastUpdate(){this.lastUpdate = new Date();}
+    public void setLastUpdate(){
+        this.lastUpdate = new Date();
+    }
 
 
 

@@ -36,7 +36,8 @@
         <td th:text="${project.status}"></td>
         <td th:text="${project.code}"></td>
         <td th:text="${project.dateCreated}"></td>
-
+        <td>   <a th:href="@{/edit/{id}(id=${project.id})}">edycja</a></td>
+        <td>   <a th:href="@{/delete/{id}(id=${project.id})}">usuwanie</a></td>
     </tr>
     </tbody>
 </table>

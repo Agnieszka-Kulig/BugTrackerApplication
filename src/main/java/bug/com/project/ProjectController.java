@@ -3,6 +3,7 @@ package bug.com.project;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +13,7 @@ import javax.validation.Valid;
 @Controller
 @AllArgsConstructor
 public class ProjectController {
-   private ProjectService projectService;
+    private ProjectService projectService;
 
 
     @GetMapping("/")
@@ -47,29 +48,43 @@ public class ProjectController {
 
         return modelAndView;
     }
-//
-//    @GetMapping("/edit/{id}")
+
+    @GetMapping("/delete/{id}")
+    ModelAndView deleteProject(@PathVariable("id") long id) {
+        projectService.deleteProject(id);
+
+        ModelAndView modelAndView = new ModelAndView("projects/index");
+        modelAndView.addObject("projects", projectService.getAllProjects());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/edit/{id}")
 //    @Secured("ROLE_EDIT_PROJECT")
-//    ModelAndView edit(@PathVariable Long id) {
-//        Project project = projectRepository.findById(id).orElse(null);
-//        if (project == null) {
-//            return index();
-//        }
-//        ModelAndView modelAndView = new ModelAndView("project/create");
-//        modelAndView.addObject("project", project);
-//        return modelAndView;
-//    }
+    ModelAndView edit(@PathVariable("id") long id) {
+
+        Project project = projectService.findProject(id);
+
+        ModelAndView modelAndView = new ModelAndView("projects/project/update");
+        modelAndView.addObject("project", project);
+        return modelAndView;
+    }
+
+    @PostMapping("/update/{id}")
+//    @Secured("ROLE_EDIT_PROJECT")
+    ModelAndView edit(@PathVariable("id") long id, @Valid Project project, BindingResult result) {
+        if (result.hasErrors()) {
+            project.setId(id);
+            ModelAndView modelAndView = new ModelAndView("/projects/project/update");
+            modelAndView.addObject("project", project);
+            return modelAndView;
+        }
+        projectService.editProject(project);
+
+        ModelAndView modelAndView = new ModelAndView("/");
+        modelAndView.addObject("projects", projectService.getAllProjects());
+        return modelAndView;
+    }
 }
 
 
-//    usuwanie projektu
-//@PostMapping("/disable")
-//public Optional<Project> disable(@RequestParam String project) {
-//    Optional<Project> projectOptional = projectRepository.findAll(project, true);
-//    project.ifPresent((value) -> {
-//        value.setEnabled(false);
-//        personRepository.save(value);
-//    });
-//    return person;
-//}
-//}

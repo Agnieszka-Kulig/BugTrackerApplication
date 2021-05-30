@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/people")
@@ -26,7 +27,7 @@ public class PersonController {
     }
 
     @GetMapping("/")
-    @Secured("ROLE_USERS_TAB")
+//    @Secured("ROLE_USERS_TAB")
     ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("people/index");
         modelAndView.addObject("people", personService.findAllUsers());
@@ -34,7 +35,7 @@ public class PersonController {
     }
 
     @GetMapping("/create")
-    @Secured("ROLE_CREATE_USER")
+//    @Secured("ROLE_CREATE_USER")
     ModelAndView create() {
         List<Authority> authorities = authorityRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("people/create");
@@ -45,7 +46,7 @@ public class PersonController {
     }
 
     @GetMapping("/edit/{id}")
-    @Secured("ROLE_CREATE_USER")
+//    @Secured("ROLE_CREATE_USER")
     ModelAndView edit(@PathVariable Long id) {
         Person person = personRepository.findById(id).orElse(null);
         if (person == null) {
@@ -58,7 +59,7 @@ public class PersonController {
     }
 
     @PostMapping(value = "/save")
-    @Secured("ROLE_CREATE_USER")
+//    @Secured("ROLE_CREATE_USER")
     ModelAndView saveUser(@ModelAttribute @Valid Person person, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -86,5 +87,14 @@ public class PersonController {
 //   }
 //}
 
-
+//    @PostMapping("/disable")
+//    public Optional<Person> disable(@RequestParam String username) {
+//        Optional<Person> person = personRepository.findByUsername(username, true);
+//        person.ifPresent((value) -> {
+//            value.setEnabled(false);
+//            personRepository.save(value);
+//        });
+//        return person;
+//    }
+//}
 
