@@ -76,25 +76,13 @@ public class PersonController {
         return modelAndView;
     }
 }
-//  dorobic usuwanie
-//       @GetMapping("/delete/{id}")
-//       @Secured("ROLE_CREATE_USER")
-//       ModelAndView modelAndView = new ModelAndView();
-
-//        modelAndView.setViewName("redirect:/people");
-
-//          return modelAndView;
-//   }
-//}
-
-//    @PostMapping("/disable")
-//    public Optional<Person> disable(@RequestParam String username) {
-//        Optional<Person> person = personRepository.findByUsername(username, true);
-//        person.ifPresent((value) -> {
-//            value.setEnabled(false);
-//            personRepository.save(value);
-//        });
-//        return person;
+//    @GetMapping("/delete/{id}")
+//    @Secured("ROLE_DELETE_USER")
+//        ModelAndView delete(@ModelAttribute@PathVariable("id")long id){
+//        Person person = personService.deletePerson(id);
+//        ModelAndView modelAndView = new ModelAndView("people/index");
+//        modelAndView.addObject("people", personService.gettAllPerson());
+//
+//            return modelAndView;
 //    }
 //}
-

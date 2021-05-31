@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Edycja projektu</title>
+    <title>Usuwanie projektu</title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -18,8 +18,8 @@
 </head>
 <body>
 <form accion="#"
-    th:accion="@{/update/{id}(id=${project.id})}"
-    th:object="${project}"
+      th:accion="@{/delete/{id}(id=${project.id})}"
+      th:object="${project}"
       method="post">
     <label for="name"> nazwa </label>
     <input type="text" th:field="*{name}" id="name" placeholder="Wpisz nazwę">
@@ -31,11 +31,10 @@
     <input type="text" th:field="*{status}" id="status" placeholder="Wpisz status">
     <label for="code"> kod projektu </label>
     <input type="text" th:field="*{code}" id="code" placeholder="Wpisz kod">
+    <input type="submit" value="usuń projekt">
 
 
-<input type="submit" value="aktualizuj projekt">
 
 </form>
-
 </body>
 </html>

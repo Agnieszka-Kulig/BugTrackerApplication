@@ -19,18 +19,11 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
+    public void createNewProject(Project project) {
 
-    public void createNewProject(String name, String code, String status, String content) {
-        Project project = new Project();
-        project.setName(name);
-        project.setCode(code);
-//        project.setStatus(status);
-        project.setContent(content);
         projectRepository.save(project);
 
-
     }
-
 
     public void deleteProject(Long id) {
         Optional<Project> project = projectRepository.findById(id);
@@ -39,15 +32,17 @@ public class ProjectService {
         }
     }
 
-
     protected Project editProject (Project project) {
+
         return projectRepository.save(project);//edycja
     }
 
     public List<Project> getAllProjects() {
+
         return projectRepository.findAll();//wyszukiwanie
    }
    public Project findProject (long id) {
+
         return projectRepository.findById(id).orElse(null);
    }
  }

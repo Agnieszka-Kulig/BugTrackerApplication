@@ -25,26 +25,27 @@ public class ProjectController {
         return modelAndView;
     }
 
-    @GetMapping("/create")
-    @Secured("ROLE_CREATE_PROJECT")
+    @GetMapping("/addNewProject")
+//    @Secured("ROLE_CREATE_PROJECT")
     ModelAndView create() {
-        ModelAndView modelAndView = new ModelAndView("project/create");
-        modelAndView.addObject("project", new Project());
+        ModelAndView modelAndView = new ModelAndView("projects/project/create");
+        Project project = new Project();
+        modelAndView.addObject("project", project);
 
         return modelAndView;
     }
 
-    @PostMapping("/save")
-    @Secured("ROLE_CREATE_PROJECT")
+    @PostMapping("/create")
+//    @Secured("ROLE_CREATE_PROJECT")
     ModelAndView createNewProject(@ModelAttribute @Valid Project project, BindingResult bindingresult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingresult.hasErrors()) {
-            modelAndView.setViewName("projects/create");
+            modelAndView.setViewName("projects/project/create");
             return modelAndView;
         }
-
+        projectService.createNewProject(project);
 //        projectRepository.save(project);
-        modelAndView.setViewName("redirect:/projects");
+        modelAndView.setViewName("redirect:/");
 
         return modelAndView;
     }

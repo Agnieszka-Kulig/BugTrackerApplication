@@ -17,6 +17,11 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+<header th:insert="fragments/header.html :: header"></header>
+<div sec:authorize="hasRole('ADMIN')">Widzi to admin</div>
+<div sec:authorize="hasRole('USERS')">Widzi to user</div>
+<div sec:authorize="hasRole('MANAGER')">Widzi to manager</div>
+<a href="/addNewProject" th:href="@{/addNewProject}" class="btn btn-large btn-success">Utwórz</a>
 <table>
     <thead>
     <tr>
@@ -36,10 +41,13 @@
         <td th:text="${project.status}"></td>
         <td th:text="${project.code}"></td>
         <td th:text="${project.dateCreated}"></td>
+        <td>   <a th:href="@{/create/{id}(id=${project.id})}">tworzenie</a></td>
         <td>   <a th:href="@{/edit/{id}(id=${project.id})}">edycja</a></td>
         <td>   <a th:href="@{/delete/{id}(id=${project.id})}">usuwanie</a></td>
+
     </tr>
     </tbody>
 </table>
+<!--<div th:replace="fragments/footer.html :: footer"></div>-->
 </body>
 </html>
