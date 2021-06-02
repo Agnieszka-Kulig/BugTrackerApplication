@@ -46,7 +46,7 @@
             <td th:text="${project.code}"></td>
             <td th:text="${project.dateCreated}"></td>
             <td><a th:href="@{/edit/{id}(id=${project.id})}">Edytuj</a></td>
-            <td><a th:href="@{/delete/{id}(id=${project.id})}">Usuń</a></td>
+            <td><a th:href="@{/delete/{id}(id=${project.id})}"style="background-color: red;color:white;padding: 3px 10px">Usuń<td>
 
         </tr>
         </tbody>

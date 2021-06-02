@@ -77,12 +77,14 @@ public class Issue {
 
     @PrePersist
     public void setDateCreated(){
+
         this.dateCreated = new Date();
     }
 
 
     @PreUpdate
     public void setLastUpdate(){
+
         this.lastUpdate = new Date();
     }
 
