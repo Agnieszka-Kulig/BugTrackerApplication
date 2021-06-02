@@ -17,9 +17,9 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<form accion="#"
-    th:accion="@{/update/{id}(id=${project.id})}"
-    th:object="${project}"
+<form action="#"
+      th:action="@{/update/{id}(id=${project.id})}"
+      th:object="${project}"
       method="post">
     <label for="name"> nazwa </label>
     <input type="text" th:field="*{name}" id="name" placeholder="Wpisz nazwę">
@@ -33,7 +33,7 @@
     <input type="text" th:field="*{code}" id="code" placeholder="Wpisz kod">
 
 
-<input type="submit" value="aktualizuj projekt">
+    <input type="submit" value="Aktualizuj projekt">
 
 </form>
 

@@ -12,12 +12,12 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Zadania</a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Lista</a></li>
+                <li><a class="dropdown-item" href="/issue">Lista</a></li>
                 <li><a class="dropdown-item" href="#">Nowe zadanie</a></li>
             </ul>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Użytkownicy</a>
+        <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+            <a class="nav-link" href="/people/">Użytkownicy</a>
         </li>
     </ul>
 </div>

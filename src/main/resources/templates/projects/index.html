@@ -18,36 +18,46 @@
 </head>
 <body>
 <header th:insert="fragments/header.html :: header"></header>
-<div sec:authorize="hasRole('ADMIN')">Widzi to admin</div>
-<div sec:authorize="hasRole('USERS')">Widzi to user</div>
-<div sec:authorize="hasRole('MANAGER')">Widzi to manager</div>
-<a href="/addNewProject" th:href="@{/addNewProject}" class="btn btn-large btn-success">Utwórz</a>
-<table>
-    <thead>
-    <tr>
-        <th>name</th>
-        <th>content</th>
-        <th>enabled</th>
-        <th>status</th>
-        <th>code</th>
-        <th>date_created</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="project : ${projects}">
-        <td th:text="${project.name}"></td>
-        <td th:text="${project.content}"></td>
-        <td th:text="${project.enabled}"></td>
-        <td th:text="${project.status}"></td>
-        <td th:text="${project.code}"></td>
-        <td th:text="${project.dateCreated}"></td>
-        <td>   <a th:href="@{/create/{id}(id=${project.id})}">tworzenie</a></td>
-        <td>   <a th:href="@{/edit/{id}(id=${project.id})}">edycja</a></td>
-        <td>   <a th:href="@{/delete/{id}(id=${project.id})}">usuwanie</a></td>
+<section class="container">
+    <img th:src="@{images/logo.png}" alt="Bug Tracker">
+    </div>
 
-    </tr>
-    </tbody>
-</table>
-<!--<div th:replace="fragments/footer.html :: footer"></div>-->
+    <h1>
+        Projekty
+    </h1>
+    <!--<div sec:authorize="hasRole('ADMIN')">Widzi to admin</div>-->
+    <!--<div sec:authorize="hasRole('USERS')">Widzi to user</div>-->
+    <!--<div sec:authorize="hasRole('MANAGER')">Widzi to manager</div>-->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Treść</th>
+            <th>Dostępność</th>
+            <th>Kod</th>
+            <th>Data utworzenia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}">
+            <td th:text="${project.name}"></td>
+            <td th:text="${project.content}"></td>
+            <td th:text="${project.enabled}"></td>
+            <td th:text="${project.code}"></td>
+            <td th:text="${project.dateCreated}"></td>
+            <td><a th:href="@{/edit/{id}(id=${project.id})}">Edytuj</a></td>
+            <td><a th:href="@{/delete/{id}(id=${project.id})}">Usuń</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a th:href="@{/create}" class="btn btn-primary">Dodaj nowy projekt</a>
+    </div>
+    </div>
+    <div th:replace="fragments/footer :: footer">
+        &copy; 2021 Bug tracker aplikacja </div>
+</section>
 </body>
 </html>

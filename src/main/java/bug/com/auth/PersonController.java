@@ -35,7 +35,7 @@ public class PersonController {
     }
 
     @GetMapping("/create")
-//    @Secured("ROLE_CREATE_USER")
+//    @Secured("ROLE_ADMIN")
     ModelAndView create() {
         List<Authority> authorities = authorityRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("people/create");
@@ -46,7 +46,7 @@ public class PersonController {
     }
 
     @GetMapping("/edit/{id}")
-//    @Secured("ROLE_CREATE_USER")
+//    @Secured("ROLE_ADMIN")
     ModelAndView edit(@PathVariable Long id) {
         Person person = personRepository.findById(id).orElse(null);
         if (person == null) {
@@ -59,7 +59,7 @@ public class PersonController {
     }
 
     @PostMapping(value = "/save")
-//    @Secured("ROLE_CREATE_USER")
+//    @Secured("ROLE_ADMIN")
     ModelAndView saveUser(@ModelAttribute @Valid Person person, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -77,7 +77,7 @@ public class PersonController {
     }
 }
 //    @GetMapping("/delete/{id}")
-//    @Secured("ROLE_DELETE_USER")
+//    @Secured("ROLE_ADMIN")
 //        ModelAndView delete(@ModelAttribute@PathVariable("id")long id){
 //        Person person = personService.deletePerson(id);
 //        ModelAndView modelAndView = new ModelAndView("people/index");

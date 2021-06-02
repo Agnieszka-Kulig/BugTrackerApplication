@@ -23,39 +23,67 @@
     </div>
 
     <h1>
-        Użytkownicy
+       Zadania
     </h1>
 
     <table class="table table-striped">
         <thead>
         <tr>
             <th>
-                Id
+                tytuł
             </th>
             <th>
-                Login
+               Opis
             </th>
             <th>
-                Nazwa
+                Osoba przypisana
+            </th>
+            <th>
+                Projekt
+            </th>
+            <th>
+                Piorytet
+            </th>
+            <th>
+                Data utworzenia
+            </th>
+            <th>
+                Data aktualizacji
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+               Typ
             </th>
         </tr>
         </thead>
-        <tr th:each="person : ${people}">
+        <tr th:each="issue : ${issues}">
             <td>
-                <a th:href="@{'/people/edit/' + ${person.id}}"
-                   th:text="${person.id}"
+                <a th:href="@{'/issue/edit/' + ${issue.id}}"
+                   th:text="${issue.id}"
                    class="btn btn-secondary"></a>
             </td>
-            <td th:text="${person.username}"></td>
-            <td th:text="${person.name}"></td>
+            <td th:text="${issue.tittle}"></td>
+            <td th:text="${issue.content}"></td>
+            <td th:text="${issue.assignee.getName()}"></td>
+            <td th:text="${issue.project.getName()}"></td>
+            <td th:text="${issue.priority}"></td>
+            <td th:text="${issue.dateCreated}"></td>
+            <td th:text="${issue.lastUpdate}"></td>
+            <td th:text="${issue.status}"></td>
+            <td th:text="${issue.type}"></td>
+            <td><a th:href="@{/edit/{id}(id=${issue.id})}">Edytuj</a></td>
+            <td><a th:href="@{/delete/{id}(id=${issue.id})}">Usuń</a></td>
+
         </tr>
     </table>
 
-    <div>
-        <a th:href="@{/people/create/}"
-           th:text="Dodaj"
-           class="btn btn-primary"></a>
-    </div>
+<!--    <div>-->
+<!--        <a th:href="@{/issue/create/}"-->
+<!--           th:text="Dodaj zgłoszenie"-->
+<!--           class="btn btn-primary"></a>-->
+<!--    </div>-->
     </div>
     <div th:replace="fragments/footer :: footer">
         &copy; 2021 Bug tracker aplikacja </div>

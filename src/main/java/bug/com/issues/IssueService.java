@@ -1,7 +1,8 @@
 package bug.com.issues;
 
 //dorobienie
-import bug.com.enums.State;
+import bug.com.enums.Status;
+import bug.com.project.Project;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class IssueService {
         this.issueRepository = issueRepository;
     }
 
-    public void createNewIssue(String tittle, String content, State state, String assigne, String project,
+    public void createNewIssue(String tittle, String content, Status state, String assigne, String project,
                                String issue, String status, String priority, String type, String code) {
 //        Issue issue = new Issue();
 //        issue.setTittle(tittle);
@@ -45,14 +46,30 @@ public class IssueService {
 //    protected void saveIssue(Issue issue) {
 //        issueRepository.save(issue);//dopisanie save
 
+//
+//    protected Issue editIssue (Long id) {
+//
+//        return issueRepository.findById(id).orElse(null);
+//    }
+//
+//    List<Issue> findAllIssue() {
+//
+//        return issueRepository.findAll();
+//    }
+//}
+}
 
-    protected Issue editIssue (Long id) {
+    protected Issue editIssue (Issue issue) {
 
-        return issueRepository.findById(id).orElse(null);
+        return issueRepository.save(issue);//edycja
     }
 
-    List<Issue> findAllIssue() {
+    public List<Issue> getAllIssue() {
 
-        return issueRepository.findAll();
+        return issueRepository.findAll();//wyszukiwanie
+    }
+    public Issue findIssue (long id) {
+
+        return issueRepository.findById(id).orElse(null);
     }
 }

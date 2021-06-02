@@ -37,7 +37,7 @@ public class Issue {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    State state = State.TODO;
+    Status status = Status.TODO;
 
     @ManyToOne()
     @JoinColumn(name = "assignee_id")
@@ -51,22 +51,13 @@ public class Issue {
     @JoinColumn(name ="issue_id")
     Issue issue;
 
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    Status status;
-
     @Column
     @Enumerated(EnumType.STRING)
     Priority priority;
 
-
     @Column
     @Enumerated(EnumType.STRING)
     Type type;
-
-    @Column
-    String code;
 
     @ManyToOne()
     @JoinColumn(name = "creator_id")

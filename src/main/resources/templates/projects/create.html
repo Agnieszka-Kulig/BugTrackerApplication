@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Tworzenie nowego projektu</title>
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<section class="container">
+    <img th:src="@{images/logo.png}" alt="Bug Tracker">
+
+    <h1>
+        Stwórz nowy projekt
+    </h1>
+    <form th:action="@{/projects/save}" th:object="${project}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <!--    <input type="hidden" th:field="*{dateCreated}"/>-->
+        <div class="row">
+            <div class="mb-3">
+                <div>
+                    <label for="name">Nazwa projektu</label>
+                </div>
+                <div>
+                    <input id="name"
+                           type="text"
+                           th:field="*{name}"
+                           placeholder="Nazwa projektu"
+                           th:class="'form-control ' + ${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
+
+                    <small class="text-danger"
+                           th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}"></small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div>
+                    <label for="content">Opis</label>
+                </div>
+                <div>
+                    <input id="content"
+                           type="text"
+                           th:field="*{content}"/>
+
+
+                    <small class="text-danger"
+                           th:if="${#fields.hasErrors('content')}"
+                           th:errors="*{content}"></small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div>
+                    <label for="enabled">Dostępny</label>
+                </div>
+                <div>
+                    <input id="enabled"
+                           type="checkbox"
+                           value="true"
+                           th:field="*{enabled}"
+                           placeholder="Dostępny"
+                           th:class="'form-control ' + ${#fields.hasErrors('enabled') ? 'is-invalid' : ''}"/>
+
+                    <small class="text-danger"
+                           th:if="${#fields.hasErrors('enabled')}"
+                           th:errors="*{enabled}"></small>
+
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <div>
+                            <label for="code">Kod projektu</label>
+                        </div>
+                        <div>
+                            <input id="code"
+                                   type="text"
+                                   th:field="*{code}"
+                                   placeholder="Kod projektu"
+                                   th:class="'form-control ' + ${#fields.hasErrors('code') ? 'is-invalid' : ''}"/>
+
+                            <small class="text-danger"
+                                   th:if="${#fields.hasErrors('code')}"
+                                   th:errors="*{code}"></small>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
+
+                    <a th:href="@{/}" class="btn btn-default" th:text="Projekty"></a>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>

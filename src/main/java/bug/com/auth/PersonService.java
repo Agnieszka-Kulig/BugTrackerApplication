@@ -33,7 +33,7 @@ public class PersonService {
     @Value("${my.manager.username}")
     private String myManagerUsername;
 
-    @Value("${my.user.password}")
+    @Value("${my.manager.password}")
     private String myManagerPassword;
 
 

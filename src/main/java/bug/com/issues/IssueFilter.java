@@ -1,7 +1,7 @@
 package bug.com.issues;
 
 import bug.com.auth.Person;
-import bug.com.enums.State;
+import bug.com.enums.Status;
 import bug.com.project.Project;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +13,24 @@ import org.springframework.data.jpa.domain.Specification;
 @NoArgsConstructor
 public class IssueFilter {
 
-    State state;
+    Status status;
     Project project;
     Person assignee;
     String title;
-
+    String priority;
+    String type;
     String globalSearch;
 
+    private Specification<Issue> hasPriority() {
+        return (issueRoot, query, builder) -> builder.equal(issueRoot.get("priority"), priority);
+    }
+
+    private Specification<Issue> hasType() {
+        return (issueRoot, query, builder) -> builder.equal(issueRoot.get("type"), type);
+    }
+
     private Specification<Issue> hasState() {
-        return (issueRoot, query, builder) -> builder.equal(issueRoot.get("state"), state);
+        return (issueRoot, query, builder) -> builder.equal(issueRoot.get("state"), status);
     }
 
     private Specification<Issue> hasProject() {
@@ -55,7 +64,7 @@ public class IssueFilter {
             spec = spec.and(hasAssignee());
         }
 
-        if (state != null) {
+        if (status != null) {
             spec = spec.and(hasState());
         }
 

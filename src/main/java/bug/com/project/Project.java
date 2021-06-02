@@ -1,5 +1,4 @@
 package bug.com.project;
-import bug.com.enums.Status;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,11 +32,6 @@ public class Project {
 
     @Column
     String code;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    Status status = Status.NORMAL;
-
 
     @NotEmpty
     @Size(min = 5, max = 255)

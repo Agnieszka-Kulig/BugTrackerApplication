@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Tworzenie nowego projektu</title>
+    <title>Edycja projektu</title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -17,8 +17,8 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<form accion="#"
-      th:accion="@{/create}"
+<form action="#"
+      th:action="@{/update/{id}(id=${project.id})}"
       th:object="${project}"
       method="post">
     <label for="name"> nazwa </label>
@@ -31,8 +31,11 @@
     <input type="text" th:field="*{status}" id="status" placeholder="Wpisz status">
     <label for="code"> kod projektu </label>
     <input type="text" th:field="*{code}" id="code" placeholder="Wpisz kod">
-    <input type="submit" value="nowy projekt">
+
+
+    <input type="submit" value="Aktualizuj projekt">
 
 </form>
+
 </body>
 </html>
