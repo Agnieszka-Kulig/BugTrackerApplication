@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Edycja projektu</title>
+    <title>Usuwanie zgłoszenia</title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -18,26 +18,21 @@
 </head>
 <body>
 <form action="#"
-      th:action="@{/update/{id}(id=${issue.id})}"
+      th:action="@{/delete/{id}(id=${issue.id})}"
       th:object="${issue}"
       method="post">
+    <label for="title"> tytuł </label>
+    <input type="text" th:field="*{title}" id="title" placeholder="Wpisz tytuł">
     <label for="content"> opis </label>
     <input type="text" th:field="*{content}" id="content" placeholder="Napisz opis">
     <label for="priority"> piorytet </label>
-    <input type="text" th:field="*{priority}" id="priority" placeholder="Wpisz piorytet">
+    <input type="priority" th:field="*{priority}" id="priority" placeholder="Wpisz piorytet">
     <label for="status"> status </label>
     <input type="text" th:field="*{status}" id="status" placeholder="Wpisz status">
-    <label for="title"> tytuł </label>
-    <input type="text" th:field="*{title}" id="title" placeholder="Napisz tytuł">
-    <label for="type"> typ </label>
-    <input type="text" th:field="*{type}" id="type" placeholder="Napisz typ">
-<!--    <label for="code"> kod projektu </label>-->
-<!--    <input type="text" th:field="*{code}" id="code" placeholder="Wpisz kod">-->
-
-
-    <input type="submit" value="Aktualizuj zgłoszenie">
+    <label for="type"> typ zgłoszenia </label>
+    <input type="text" th:field="*{type}" id="type" placeholder="Wpisz typ">
+    <input type="submit" value="usuń projekt">
 
 </form>
-
 </body>
 </html>

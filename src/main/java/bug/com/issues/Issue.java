@@ -30,7 +30,7 @@ public class Issue {
     Long id;
 
     @Column(nullable = false)
-    String tittle;
+    String title;
 
     @Column(columnDefinition = "TEXT")
     String content;

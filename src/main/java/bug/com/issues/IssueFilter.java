@@ -29,8 +29,8 @@ public class IssueFilter {
         return (issueRoot, query, builder) -> builder.equal(issueRoot.get("type"), type);
     }
 
-    private Specification<Issue> hasState() {
-        return (issueRoot, query, builder) -> builder.equal(issueRoot.get("state"), status);
+    private Specification<Issue> hasStatus() {
+        return (issueRoot, query, builder) -> builder.equal(issueRoot.get("status"), status);
     }
 
     private Specification<Issue> hasProject() {
@@ -65,7 +65,7 @@ public class IssueFilter {
         }
 
         if (status != null) {
-            spec = spec.and(hasState());
+            spec = spec.and(hasStatus());
         }
 
         if (title != null) {

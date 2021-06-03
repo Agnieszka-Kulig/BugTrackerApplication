@@ -19,18 +19,76 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <section class="container">
-    <img th:src="@{images/logo.png}" alt="Bug Tracker">
+    <center><img th:src="@{images/logo.png}" alt="Bug Tracker"/></center>
     </div>
 
     <h1>
        Zadania
     </h1>
+    <h3 th:text="#{nav.issues}" class="pb-3"></h3>
+    <form th:action="@{/issue}" th:object="${filter}"
+          class="form-inline">
+
+        <select th:field="*{project}"
+                class="form-control"
+                onchange="this.form.submit()">
+            <option th:value="${null}" th:text="#{project.placeholder}">
+            </option>
+            <option th:each="project : ${projects}"
+                    th:value="${project.id}"
+                    th:text="${project.name}"></option>
+        </select>
+
+        <select th:field="*{assignee}"
+                class="form-control"
+                onchange="this.form.submit()">
+            <option th:value="${null}" th:text="#{assignee.placeholder}"></option>
+            <option th:each="person : ${people}"
+                    th:value="${person.id}"
+                    th:text="${person.name}"></option>
+        </select>
+
+        <select th:field="*{status}"
+                class="form-control"
+                onchange="this.form.submit()">
+            <option th:value="${null}" th:text="#{status.placeholder}"></option>
+            <option th:each="status : ${statuses}"
+                    th:value="${status}"
+                    th:text="${#messages.msg('status.' + status)}"></option>
+        </select>
+        <select th:field="*{type}"
+                class="form-control"
+                onchange="this.form.submit()">
+            <option th:value="${null}" th:text="#{type.placeholder}"></option>
+            <option th:each="type : ${types}"
+                    th:value="${type}"
+                    th:text="${#messages.msg('type.' + type)}"></option>
+        </select>
+        <select th:field="*{priority}"
+                class="form-control"
+                onchange="this.form.submit()">
+            <option th:value="${null}" th:text="#{priority.placeholder}"></option>
+            <option th:each="priority : ${priorities}"
+                    th:value="${priority}"
+                    th:text="${#messages.msg('priority.' + priority)}"></option>
+        </select>
+        <input th:field="*{title}"
+               class="form-control"
+               th:placeholder="#{title.placeholder}"/>
+
+        <input th:field="*{globalSearch}"
+               class="form-control"
+               th:placeholder="#{globalSearch.placeholder}"/>
+
+        <button class="btn btn-primary" type="submit" th:text="#{common.search}"></button>
+        <a th:href="@{/issue}" th:text="#{common.clear}" class="btn btn-default"></a>
+    </form>
 
     <table class="table table-striped">
         <thead>
         <tr>
             <th>
-                tytuł
+                Tytuł
             </th>
             <th>
                Opis
@@ -39,7 +97,7 @@
                 Osoba przypisana
             </th>
             <th>
-                Projekt
+                Nazwa projektu
             </th>
             <th>
                 Piorytet
@@ -64,7 +122,7 @@
                    th:text="${issue.id}"
                    class="btn btn-secondary"></a>
             </td>
-            <td th:text="${issue.tittle}"></td>
+            <td th:text="${issue.title}"></td>
             <td th:text="${issue.content}"></td>
             <td th:text="${issue.assignee.getName()}"></td>
             <td th:text="${issue.project.getName()}"></td>
@@ -73,8 +131,9 @@
             <td th:text="${issue.lastUpdate}"></td>
             <td th:text="${issue.status}"></td>
             <td th:text="${issue.type}"></td>
-            <td><a th:href="@{/edit/{id}(id=${issue.id})}">Edytuj</a></td>
-            <td><a th:href="@{/delete/{id}(id=${issue.id})}">Usuń</a></td>
+            <td><a th:href="@{/create/{id}(id=${issue.id})}"style="background-color: green;color:white;padding: 3px 10px; text-decoration:none;">Utwórz<td>
+            <td><a th:href="@{/edit/{id}(id=${issue.id})}"style="background-color: deepskyblue;color:white;padding: 3px 10px; text-decoration:none;">Edytuj<td>
+            <td><a th:href="@{/delete/{id}(id=${issue.id})}"style="background-color: red;color:white;padding: 3px 10px; text-decoration:none;">Usuń<td>
 
         </tr>
     </table>

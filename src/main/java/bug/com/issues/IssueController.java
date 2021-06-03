@@ -34,59 +34,63 @@ public class IssueController {
         modelAndView.addObject("issues", issueRepository.findAll(issueFilter.buildQuery()));
         modelAndView.addObject("projects", projectRepository.findAll());
         modelAndView.addObject("people", personRepository.findAll());
-        modelAndView.addObject("states", Status.values());
-        modelAndView.addObject("type", Type.values());
-        modelAndView.addObject("priority", Priority.values());
+        modelAndView.addObject("statuses", Status.values());
+        modelAndView.addObject("types", Type.values());
+        modelAndView.addObject("priorities", Priority.values());
         modelAndView.addObject("filter", issueFilter);
 
         return modelAndView;
     }
-}
 
-//    @GetMapping("/create")
-//    @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
-//    ModelAndView createIssue() {
-//        ModelAndView modelAndView = new ModelAndView("issue/create");
-//        modelAndView.addObject("issue", new Issue());
-//
-//        return modelAndView;
-//    }
-//
-//    @GetMapping("/edit/{id}")
-//    @Secured({"ROLE_MANAGER", "ROLE_ADMIN",  "ROLE_USERS"})
-//    ModelAndView editIssue(@PathVariable Long id) {
-//        Issue issue = issueService.findIssue(id);
-//        if (issue == null) {
-//            return index();
-//        }
-//        ModelAndView modelAndView = new ModelAndView("issue/create");
-//        modelAndView.addObject("issue", issue);
-//        return modelAndView;
-//    }
-//
-//    @PostMapping(value = "/issue/save")
-//    @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
-//    ModelAndView saveIssue(@ModelAttribute @Valid Issue issue, BindingResult bindingresult) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        if (bindingresult.hasErrors()) {
-//            modelAndView.setViewName("issue/create");
-//            modelAndView.addObject("issue", issue);
-//            return modelAndView;
-//        }
-//        issueService.createNewIssue(issue);
-//        modelAndView.setViewName("redirect:/");
-//
-//        return modelAndView;
-//    }
-//
-//    @GetMapping("/delete/{id}")
-//    @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
-//    ModelAndView deleteIssue(@PathVariable("id") long id) {
-//        issueService.deleteIssue(id);
-//
-//        ModelAndView modelAndView = new ModelAndView("issue/index");
-//        modelAndView.addObject("issue", issueService.getAllIssue());
-//
-//        return modelAndView;
-//    }
-//}
+
+    @GetMapping("/create")
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
+    ModelAndView createIssue() {
+        ModelAndView modelAndView = new ModelAndView("issue/create");
+        modelAndView.addObject("issue", new Issue());
+        modelAndView.addObject("statuses", Status.values());
+        modelAndView.addObject("types", Type.values());
+        modelAndView.addObject("priorities", Priority.values());
+
+        return modelAndView;
+    }
+
+
+    @GetMapping("/edit/{id}")
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
+    ModelAndView editIssue(@PathVariable Long id) {
+        Issue issue = issueService.findIssue(id);
+        if (issue == null) {
+            return index(new IssueFilter());
+        }
+        ModelAndView modelAndView = new ModelAndView("issue/create");
+        modelAndView.addObject("issue", issue);
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/save")
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
+    ModelAndView saveIssue(@ModelAttribute @Valid Issue issue, BindingResult bindingresult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingresult.hasErrors()) {
+            modelAndView.setViewName("issue/create");
+            modelAndView.addObject("issue", issue);
+            return modelAndView;
+        }
+        issueService.createNewIssue(issue);
+        modelAndView.setViewName("redirect:/issue");
+
+        return modelAndView;
+    }
+
+    @GetMapping("/delete/{id}")
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
+    ModelAndView deleteIssue(@PathVariable("id") long id) {
+        issueService.deleteIssue(id);
+
+        ModelAndView modelAndView = new ModelAndView("issue/index");
+        modelAndView.addObject("issue", issueService.getAllIssue());
+
+        return modelAndView;
+    }
+}

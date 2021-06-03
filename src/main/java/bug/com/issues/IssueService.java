@@ -3,6 +3,7 @@ package bug.com.issues;
 //dorobienie
 import bug.com.enums.Status;
 import bug.com.project.Project;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,25 +11,22 @@ import java.util.Optional;
 
 
 @Service
+@AllArgsConstructor
 public class IssueService {
 
     private final IssueRepository issueRepository;
 
 
-    public IssueService(IssueRepository issueRepository) {
-
-        this.issueRepository = issueRepository;
-    }
     public void createNewIssue(Issue issue) {
 
         issueRepository.save(issue);
 
     }
 
-//    public void createNewIssue(String tittle, String content, Status state, String assigne, String project,
+//    public void createNewIssue(String title, String content, Status state, String assigne, String project,
 //                               String issue, String status, String priority, String type, String code) {
 //        Issue issue = new Issue();
-//        issue.setTittle(tittle);
+//        issue.setTitle(title);
 //        issue.setContent(content);
 //        issue.setState(state);
 //        issue.setAssignee(assigne);
