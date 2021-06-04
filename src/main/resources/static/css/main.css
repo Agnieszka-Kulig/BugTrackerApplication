@@ -8,3 +8,66 @@ body {
     color: blue;
     icon: witter;
 }
+
+form {
+    width: 100%;
+}
+
+.logout-element {
+    width: auto;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 500px;
+}
+
+.div-center {
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    padding: 1em 2em;
+    border-bottom: 2px solid #ccc;
+    display: table;
+}
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    vertical-align: middle;
+    min-height: calc(100vh - 110px);
+    width: 100%;
+    /*margin-bottom: -50px;*/
+}
+
+div.content {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.footer {
+    margin-top: 10px;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/
+    height: 40px;
+    background: lightgray;
+}
+
+/*.login-footer*/
+/*.push {*/
+/*    height: 50px;*/
+/*}*/

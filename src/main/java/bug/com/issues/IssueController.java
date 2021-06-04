@@ -2,6 +2,7 @@
 package bug.com.issues;
 
 import bug.com.auth.PersonRepository;
+import bug.com.auth.PersonService;
 import bug.com.enums.Priority;
 import bug.com.enums.Status;
 import bug.com.enums.Type;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @Controller
@@ -26,14 +28,16 @@ public class IssueController {
     final IssueRepository issueRepository;
     final ProjectRepository projectRepository;
     final PersonRepository personRepository;
+    final ProjectService projectService;
+    final PersonService personService;
 
     @GetMapping
     ModelAndView index(@ModelAttribute IssueFilter issueFilter) {
         ModelAndView modelAndView = new ModelAndView("issue/index");
 
         modelAndView.addObject("issues", issueRepository.findAll(issueFilter.buildQuery()));
-        modelAndView.addObject("projects", projectRepository.findAll());
-        modelAndView.addObject("people", personRepository.findAll());
+        modelAndView.addObject("projects", projectService.getAllProjects());
+        modelAndView.addObject("people", personService.findAllUsers());
         modelAndView.addObject("statuses", Status.values());
         modelAndView.addObject("types", Type.values());
         modelAndView.addObject("priorities", Priority.values());
@@ -51,6 +55,8 @@ public class IssueController {
         modelAndView.addObject("statuses", Status.values());
         modelAndView.addObject("types", Type.values());
         modelAndView.addObject("priorities", Priority.values());
+        modelAndView.addObject("projects", projectService.getAllProjects());
+        modelAndView.addObject("assignees", personService.findAllUsers());
 
         return modelAndView;
     }
@@ -70,7 +76,7 @@ public class IssueController {
 
     @PostMapping(value = "/save")
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
-    ModelAndView saveIssue(@ModelAttribute @Valid Issue issue, BindingResult bindingresult) {
+    ModelAndView saveIssue(@ModelAttribute @Valid Issue issue, BindingResult bindingresult) throws MessagingException {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingresult.hasErrors()) {
             modelAndView.setViewName("issue/create");

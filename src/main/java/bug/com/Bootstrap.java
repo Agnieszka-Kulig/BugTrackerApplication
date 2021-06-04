@@ -26,8 +26,6 @@ public class Bootstrap implements InitializingBean {
         prepareAuthorities();
 
         personService.prepareAdminUser();
-        personService.prepareUserUser();
-        personService.prepareManager();
     }
 
     private void prepareAuthorities() {

@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -44,5 +45,6 @@ public class Project {
 
     @Column
     @CreationTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateCreated;
 }

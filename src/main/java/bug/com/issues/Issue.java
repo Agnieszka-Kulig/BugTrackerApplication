@@ -1,7 +1,5 @@
 package bug.com.issues;//formatka z funkcjonalnością, lista sortująca statusy zadań
 
-
-
 import bug.com.auth.Person;
 import bug.com.comment.Comment;
 import bug.com.enums.*;
@@ -12,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -47,10 +46,6 @@ public class Issue {
     @JoinColumn(name = "project_id", nullable = false)
     Project project;
 
-    @ManyToOne
-    @JoinColumn(name ="issue_id")
-    Issue issue;
-
     @Column
     @Enumerated(EnumType.STRING)
     Priority priority;
@@ -65,10 +60,12 @@ public class Issue {
 
     @Column
     @CreationTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateCreated;
 
     @Column
     @UpdateTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date lastUpdate;
 
     @Column
@@ -81,13 +78,9 @@ public class Issue {
         this.dateCreated = new Date();
     }
 
-
     @PreUpdate
     public void setLastUpdate(){
 
         this.lastUpdate = new Date();
     }
-
-
-
 }

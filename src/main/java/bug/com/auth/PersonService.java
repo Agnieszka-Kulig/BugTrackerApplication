@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -22,20 +23,6 @@ public class PersonService {
 
     @Value("${my.admin.password}")
     private String myAdminPassword;
-
-    @Value("${my.user.username}")
-    private String myUserUsername;
-
-    @Value("${my.user.password}")
-    private String myUserPassword;
-
-
-    @Value("${my.manager.username}")
-    private String myManagerUsername;
-
-    @Value("${my.manager.password}")
-    private String myManagerPassword;
-
 
     public PersonService(PersonRepository personRepository, AuthorityRepository authorityRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.personRepository = personRepository;
@@ -57,59 +44,22 @@ public class PersonService {
 
         savePerson(person);
     }
-    public void prepareUserUser() {
-        if (personRepository.findByUsername(myUserUsername) != null) {
-            System.out.println("Użytkownik " + myUserUsername + " już istnieje. Przerywamy tworzenie.");
-            return;
+
+    public void deletePerson(Long id) {
+        Optional<Person> person = personRepository.findById(id);
+        if(person.isPresent()) {
+            personRepository.delete(person.get());
         }
-        System.out.println("Tworzymy użytkownika: " + myUserUsername + "...");
-        Person person = new Person(myUserUsername, myUserPassword, "Użytkownik");
-        Authority byName = authorityRepository.findByName(AuthorityName.ROLE_USERS);
-
-        List<Authority> authorities = new ArrayList<>();
-        authorities.add(byName);
-        person.setAuthorities(new HashSet<>(authorities));
-
-        savePerson(person);
-    }
-    public void prepareManager() {
-        if (personRepository.findByUsername(myManagerUsername) != null) {
-            System.out.println("Menadżer " + myManagerUsername + " już istnieje. Przerywamy tworzenie.");
-            return;
-        }
-        System.out.println("Tworzymy menadżera: " + myManagerUsername + "...");
-        Person person = new Person(myManagerUsername, myManagerPassword, "Menadżer");
-        Authority byName = authorityRepository.findByName(AuthorityName.ROLE_MANAGER);
-
-        List<Authority> authorities = new ArrayList<>();
-        authorities.add(byName);
-        person.setAuthorities(new HashSet<>(authorities));
-
-        savePerson(person);
     }
 
-    public void createNewPerson(String userRealName, String username, String meil){
-        Person person = new Person();
-        person.setName(userRealName);
-        person.setUsername(username);
-        person.setEmail(meil);
+    public void savePerson(Person person) {
+        String hashedPassword = bCryptPasswordEncoder.encode(person.getPassword());
+        person.setPassword(hashedPassword);
         personRepository.save(person);
 
     }
-    public void deletePerson(String username) {
-        Person byUsername = personRepository.findByUsername(username);
-        personRepository.delete(byUsername);
-    }
 
-        protected void savePerson(Person person) {
-            String hashedPassword = bCryptPasswordEncoder.encode(person.getPassword());
-            person.setPassword(hashedPassword);
-            personRepository.save(person);
-
-        }
-
-        List<Person> findAllUsers() {
-
+    public List<Person> findAllUsers() {
         return personRepository.findAll();
-        }
     }
+}

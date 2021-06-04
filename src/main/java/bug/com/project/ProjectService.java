@@ -1,8 +1,6 @@
 package bug.com.project;
 
-import bug.com.issues.Issue;
 import lombok.Data;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,9 +38,9 @@ public class ProjectService {
     public List<Project> getAllProjects() {
 
         return projectRepository.findAll();//wyszukiwanie
-   }
-   public Project findProject (long id) {
+    }
+    public Project findProject (long id) {
 
         return projectRepository.findById(id).orElse(null);
-   }
- }
+    }
+}
