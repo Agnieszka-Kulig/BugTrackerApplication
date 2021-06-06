@@ -27,7 +27,7 @@ public class PersonController {
     }
 
     @GetMapping("/")
-//    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_ADMIN")
     ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("people/index");
         modelAndView.addObject("people", personService.findAllUsers());
