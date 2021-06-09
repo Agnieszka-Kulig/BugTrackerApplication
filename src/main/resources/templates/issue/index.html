@@ -128,8 +128,8 @@
             <td th:text="${issue.lastUpdate}"></td>
             <td th:text="${issue.status}"></td>
             <td th:text="${issue.type}"></td>
-            <td><a th:href="@{/edit/{id}(id=${issue.id})}" th:text="Edytuj" class="btn btn-success"><td>
-            <td><a th:href="@{/delete/{id}(id=${issue.id})}" th:text="Usuń" class="btn btn-danger"><td>
+            <td><a th:href="@{/issue/edit/{id}(id=${issue.id})}" th:text="Edytuj" class="btn btn-success"><td>
+            <td><a th:href="@{/issue/delete/{id}(id=${issue.id})}" th:text="Usuń" class="btn btn-danger"><td>
         </tr>
     </table>
 </div>

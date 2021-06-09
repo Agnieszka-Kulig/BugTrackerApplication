@@ -71,6 +71,11 @@ public class IssueController {
         }
         ModelAndView modelAndView = new ModelAndView("issue/create");
         modelAndView.addObject("issue", issue);
+        modelAndView.addObject("statuses", Status.values());
+        modelAndView.addObject("types", Type.values());
+        modelAndView.addObject("priorities", Priority.values());
+        modelAndView.addObject("projects", projectService.getAllProjects());
+        modelAndView.addObject("assignees", personService.findAllUsers());
         return modelAndView;
     }
 
@@ -93,10 +98,10 @@ public class IssueController {
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
     ModelAndView deleteIssue(@PathVariable("id") long id) {
         issueService.deleteIssue(id);
-
+        IssueFilter issueFilter = new IssueFilter();
         ModelAndView modelAndView = new ModelAndView("issue/index");
         modelAndView.addObject("issue", issueService.getAllIssue());
-
+        modelAndView.addObject("filter", issueFilter);
         return modelAndView;
     }
 }

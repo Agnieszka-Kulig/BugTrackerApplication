@@ -34,6 +34,21 @@ public class PersonController {
         return modelAndView;
     }
 
+    @GetMapping("/editMyProfile")
+    ModelAndView editMyProfile() {
+        String username = personService.getCurrentUserName().getUsername();
+        Person person = personService.findByUsername(username);
+        List<Authority> authorities = authorityRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("people/create");
+        modelAndView.addObject("authorities", authorities);
+        modelAndView.addObject("person", person);
+        if (person ==null){
+            modelAndView.setViewName("redirect:/");
+        }
+
+        return modelAndView;
+    }
+
     @GetMapping("/create")
     @Secured("ROLE_ADMIN")
     ModelAndView create() {

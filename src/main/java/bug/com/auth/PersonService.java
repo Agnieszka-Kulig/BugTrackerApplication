@@ -3,6 +3,9 @@ package bug.com.auth;
 
 import bug.com.enums.AuthorityName;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +34,7 @@ public class PersonService {
     }
 
     public void prepareAdminUser() {
-        if (personRepository.findByUsername(myAdminUsername) != null) {
+        if (personRepository.findFirstByUsername(myAdminUsername) != null) {
             System.out.println("Administrator " + myAdminUsername + " już istnieje. Przerywamy tworzenie.");
             return;
         }
@@ -61,5 +64,15 @@ public class PersonService {
 
     public List<Person> findAllUsers() {
         return personRepository.findAll();
+    }
+
+    public User getCurrentUserName() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return (User) auth.getPrincipal();
+    }
+
+    public Person findByUsername(String username) {
+        return personRepository.findFirstByUsername(username);
+
     }
 }

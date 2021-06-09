@@ -13,6 +13,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +31,8 @@ public class Issue {
     @GeneratedValue
     Long id;
 
+    @NotEmpty
+    @Size(min=5,max=200)
     @Column(nullable = false)
     String title;
 
@@ -38,10 +43,12 @@ public class Issue {
     @Enumerated(EnumType.STRING)
     Status status = Status.TODO;
 
+    @NotNull
     @ManyToOne()
     @JoinColumn(name = "assignee_id")
     Person assignee;
 
+    @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     Project project;

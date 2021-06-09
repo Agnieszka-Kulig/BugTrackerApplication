@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Person person = personRepository.findByUsername(username);
+        Person person = personRepository.findFirstByUsername(username);
         System.out.println("Znaleziony użytkownik: " + person);
 
         if (person == null) {

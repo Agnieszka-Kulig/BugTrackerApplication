@@ -25,7 +25,7 @@ public class UsernameUniquenessValidator
 
     @Override
     public boolean isValid(Person person, ConstraintValidatorContext ctx) {
-        Person foundPerson = personRepository.findByUsername(person.getUsername());
+        Person foundPerson = personRepository.findFirstByUsername(person.getUsername());
 
         if (foundPerson == null) {
             return true;
