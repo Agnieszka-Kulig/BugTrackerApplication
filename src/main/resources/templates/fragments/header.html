@@ -30,26 +30,26 @@
             </a>
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/"><h6 th:text="#{project.projects}" class="pb-6"></h6></a>
+                    <a class="nav-link" href="/"><span th:text="#{nav.projects}" /></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <h6 th:text="#{issue.name}" class="pb-6"></h6></label>
+                        <span th:text="#{issue.name}"/></label>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/issue"><h8 th:text="#{issue.filter}" class="pb-8"></h8></a></li>
+                        <li><a class="dropdown-item" href="/issue"><span th:text="#{issue.filter}"/></a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/issue/create"><h8 th:text="#{issue.new}" class="pb-8"></h8></a></li>
+                        <li><a class="dropdown-item" href="/issue/create"><span th:text="#{issue.new}"/></a></li>
                     </ul>
                 </li>
                 <li sec:authorize="hasRole('ADMIN')" class="nav-item">
-                    <a class="nav-link" href="/people/"><h6 th:text="#{people.people}" class="pb-6"></h6></a>
+                    <a class="nav-link" href="/people/"><span th:text="#{people.people}"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact"><h6 th:text="#{contact.contact}" class="pb-6"></h6></th:text></a>
+                    <a class="nav-link" href="/contact"><span th:text="#{contact.contact}"/></th:text></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/people/editMyProfile"><h6 th:text="#{my.count}" class="pb-6"></h6></a>
+                    <a class="nav-link" href="/people/editMyProfile"><span th:text="#{my.account}"/></a>
                 </li>
             </ul>
         </div>

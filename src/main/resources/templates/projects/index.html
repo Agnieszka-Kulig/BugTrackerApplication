@@ -17,34 +17,38 @@
 <body>
 <header th:insert="fragments/header.html :: header"></header>
 <div class="container">
-    <h1>
-        Projekty
-    </h1>
+    <h3 th:text="#{nav.projects}" class="pb-3"></h3>
+    <span th:if="${errorMessage == true}" >
+        <div th:replace="fragments/alert :: alert(type='danger', message=#{project.deleteError})"/>
+    </span>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Nazwa</th>
-            <th>Treść</th>
-            <th>Dostępność</th>
-            <th>Kod</th>
-            <th>Data utworzenia</th>
+            <th th:text="#{project.name}"></th>
+            <th th:text="#{project.content}"></th>
+            <th th:text="#{project.availability}"></th>
+            <th th:text="#{project.code}"></th>
+            <th th:text="#{project.createdDate}"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="project : ${projects}">
             <td th:text="${project.name}"></td>
             <td th:text="${project.content}"></td>
-            <td th:text="${project.enabled}"></td>
+            <td>
+                <span th:if="${project.enabled == true}" th:text="#{project.enabled}"/>
+                <span th:if="${project.enabled == false}" th:text="#{project.disabled}"/>
+            </td>
             <td th:text="${project.code}"></td>
             <td th:text="${project.dateCreated}"></td>
-            <td><a th:href="@{/edit/{id}(id=${project.id})}" th:text="Edytuj" class="btn btn-success"><td>
-            <td><a th:href="@{/delete/{id}(id=${project.id})}" th:text="Usuń" class="btn btn-danger"><td>
+            <td><a th:href="@{/edit/{id}(id=${project.id})}" th:text="#{button.edit}" class="btn btn-success"><td>
+            <td><a th:href="@{/delete/{id}(id=${project.id})}" th:text="#{button.delete}" class="btn btn-danger"><td>
         </tr>
         </tbody>
     </table>
 
     <div>
-        <a th:href="@{/create}" class="btn btn-primary">Dodaj nowy projekt</a>
+        <a th:href="@{/create}" class="btn btn-primary" th:text="#{button.addNewProject}"/>
     </div>
 </div>
 <div class="footer" th:insert="fragments/footer.html :: footer"></div>
