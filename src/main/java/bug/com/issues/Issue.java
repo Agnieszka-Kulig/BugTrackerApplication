@@ -32,16 +32,17 @@ public class Issue {
     Long id;
 
     @NotEmpty
-    @Size(min=5,max=200)
+    @Size(min = 5, max = 200)
     @Column(nullable = false)
     String title;
 
+    @Size(min = 5, max = 255)
     @Column(columnDefinition = "TEXT")
     String content;
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
-    Status status = Status.TODO;
+    Status status;
 
     @NotNull
     @ManyToOne()

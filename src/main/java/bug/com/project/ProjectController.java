@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -20,7 +21,9 @@ public class ProjectController {
     @Secured({"ROLE_USERS", "ROLE_MANAGER", "ROLE_ADMIN"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("projects/index");
-        modelAndView.addObject("projects", projectService.getAllProjects());
+        List<Project> allProjects = projectService.getAllProjects();
+        modelAndView.addObject("projects", allProjects);
+        modelAndView.addObject("errorMessage", false);
 
         return modelAndView;
     }
@@ -64,9 +67,13 @@ public class ProjectController {
     @GetMapping("/delete/{id}")
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     ModelAndView deleteProject(@PathVariable("id") long id) {
-        projectService.deleteProject(id);
-
         ModelAndView modelAndView = new ModelAndView("projects/index");
+        if(projectService.deleteEnable(id)) {
+            modelAndView.addObject("errorMessage", false);
+            projectService.deleteProject(id);
+        } else {
+            modelAndView.addObject("errorMessage", true);
+        }
         modelAndView.addObject("projects", projectService.getAllProjects());
 
         return modelAndView;

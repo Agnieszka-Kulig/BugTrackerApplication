@@ -1,5 +1,7 @@
 package bug.com.project;
 
+import bug.com.issues.Issue;
+import bug.com.issues.IssueService;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,7 @@ import java.util.Optional;
 public class ProjectService {
 
     private final ProjectRepository projectRepository;
-
-    public ProjectService(ProjectRepository projectRepository) {
-
-        this.projectRepository = projectRepository;
-    }
+    private final IssueService issueService;
 
     public void createNewProject(Project project) {
 
@@ -39,8 +37,24 @@ public class ProjectService {
 
         return projectRepository.findAll();//wyszukiwanie
     }
+
+    public List<Project> getAllEnabledProjects() {
+
+        return projectRepository.findAllByEnabled(true);//wyszukiwanie
+    }
+
+
     public Project findProject (long id) {
 
         return projectRepository.findById(id).orElse(null);
+    }
+
+    public boolean deleteEnable(long projectId) {
+        Project project = findProject(projectId);
+        if(project != null) {
+            List<Issue> issueList = issueService.getAllIssuesByProject(project);
+            return issueList.isEmpty();
+        }
+        return false;
     }
 }

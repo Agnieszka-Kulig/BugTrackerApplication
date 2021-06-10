@@ -50,4 +50,12 @@ public class IssueService {
 
         return issueRepository.findById(id).orElse(null);
     }
+
+    public List<Issue> getAllIssuesByProject(Project project) {
+        return issueRepository.findAllByProject(project);
+    }
+    public List<Issue> getAllIssuesByPerson(Person person) {
+        return issueRepository.findAllByAssignee(person);
+    }
+
 }

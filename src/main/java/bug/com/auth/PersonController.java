@@ -36,16 +36,14 @@ public class PersonController {
 
     @GetMapping("/editMyProfile")
     ModelAndView editMyProfile() {
-        String username = personService.getCurrentUserName().getUsername();
-        Person person = personService.findByUsername(username);
-        List<Authority> authorities = authorityRepository.findAll();
+        String username = personService.getCurrentUsername().getUsername();
+        Person person = personService.findPersonByUsername(username);
         ModelAndView modelAndView = new ModelAndView("people/create");
-        modelAndView.addObject("authorities", authorities);
+        modelAndView.addObject("authorities", authorityRepository.findAll());
         modelAndView.addObject("person", person);
-        if (person ==null){
+        if (person == null) {
             modelAndView.setViewName("redirect:/");
         }
-
         return modelAndView;
     }
 
@@ -94,8 +92,13 @@ public class PersonController {
     @GetMapping("/delete/{id}")
     @Secured("ROLE_ADMIN")
     ModelAndView delete(@ModelAttribute@PathVariable("id")long id){
-        personService.deletePerson(id);
         ModelAndView modelAndView = new ModelAndView("people/index");
+        if(personService.deleteEnable(id)) {
+            modelAndView.addObject("errorMessage", false);
+            personService.deletePerson(id);
+        } else {
+            modelAndView.addObject("errorMessage", true);
+        }
         modelAndView.addObject("people", personService.findAllUsers());
 
         return modelAndView;

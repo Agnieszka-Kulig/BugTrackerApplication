@@ -6,7 +6,6 @@ import bug.com.auth.PersonService;
 import bug.com.enums.Priority;
 import bug.com.enums.Status;
 import bug.com.enums.Type;
-import bug.com.project.Project;
 import bug.com.project.ProjectRepository;
 import bug.com.project.ProjectService;
 import lombok.AllArgsConstructor;
@@ -46,7 +45,6 @@ public class IssueController {
         return modelAndView;
     }
 
-
     @GetMapping("/create")
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
     ModelAndView createIssue() {
@@ -55,12 +53,11 @@ public class IssueController {
         modelAndView.addObject("statuses", Status.values());
         modelAndView.addObject("types", Type.values());
         modelAndView.addObject("priorities", Priority.values());
-        modelAndView.addObject("projects", projectService.getAllProjects());
+        modelAndView.addObject("projects", projectService.getAllEnabledProjects());
         modelAndView.addObject("assignees", personService.findAllUsers());
 
         return modelAndView;
     }
-
 
     @GetMapping("/edit/{id}")
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
@@ -74,7 +71,7 @@ public class IssueController {
         modelAndView.addObject("statuses", Status.values());
         modelAndView.addObject("types", Type.values());
         modelAndView.addObject("priorities", Priority.values());
-        modelAndView.addObject("projects", projectService.getAllProjects());
+        modelAndView.addObject("projects", projectService.getAllEnabledProjects());
         modelAndView.addObject("assignees", personService.findAllUsers());
         return modelAndView;
     }
@@ -86,6 +83,11 @@ public class IssueController {
         if (bindingresult.hasErrors()) {
             modelAndView.setViewName("issue/create");
             modelAndView.addObject("issue", issue);
+            modelAndView.addObject("statuses", Status.values());
+            modelAndView.addObject("types", Type.values());
+            modelAndView.addObject("priorities", Priority.values());
+            modelAndView.addObject("projects", projectService.getAllEnabledProjects());
+            modelAndView.addObject("assignees", personService.findAllUsers());
             return modelAndView;
         }
         issueService.createNewIssue(issue);
@@ -98,10 +100,10 @@ public class IssueController {
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN", "ROLE_USERS"})
     ModelAndView deleteIssue(@PathVariable("id") long id) {
         issueService.deleteIssue(id);
-        IssueFilter issueFilter = new IssueFilter();
         ModelAndView modelAndView = new ModelAndView("issue/index");
-        modelAndView.addObject("issue", issueService.getAllIssue());
-        modelAndView.addObject("filter", issueFilter);
+        modelAndView.addObject("issues", issueService.getAllIssue());
+        modelAndView.addObject("filter", new IssueFilter());
+
         return modelAndView;
     }
 }

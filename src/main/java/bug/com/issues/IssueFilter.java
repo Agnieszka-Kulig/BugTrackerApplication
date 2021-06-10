@@ -1,7 +1,9 @@
 package bug.com.issues;
 
 import bug.com.auth.Person;
+import bug.com.enums.Priority;
 import bug.com.enums.Status;
+import bug.com.enums.Type;
 import bug.com.project.Project;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +19,8 @@ public class IssueFilter {
     Project project;
     Person assignee;
     String title;
-    String priority;
-    String type;
+    Priority priority;
+    Type type;
     String globalSearch;
 
     private Specification<Issue> hasPriority() {
@@ -68,6 +70,14 @@ public class IssueFilter {
             spec = spec.and(hasStatus());
         }
 
+        if (type != null) {
+            spec = spec.and(hasType());
+        }
+
+        if (priority != null) {
+            spec = spec.and(hasPriority());
+        }
+
         if (title != null) {
             spec = spec.and(hasTitle());
         }
@@ -80,4 +90,3 @@ public class IssueFilter {
     }
 
 }
-
